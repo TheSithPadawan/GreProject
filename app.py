@@ -1,17 +1,20 @@
-from flask import Flask
+# server side code
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 import json
+from flask import jsonify
+
 app = Flask(__name__)
 
 app.config.update(
-    SECRET_KEY = 'Florence', # need a better key for app security
+    SECRET_KEY = 'Florence',
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:Florence@localhost/gre_db',
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 )
 
 db = SQLAlchemy(app)
-@app.route('/')
+@app.route('/') # main page that renders json from Question query
 def get_data():
     query = db.session.query(Question).all()
     output = []
@@ -19,6 +22,12 @@ def get_data():
             output.append({"question":row.text, "options":row.choices})
     return json.dumps(output)
 
+# handle client post request
+@app.route('/action',methods = ['POST'])
+def get_message():
+    ans1 = request.form['ans1']
+    ans2 = request.form['ans2']
+    return '200'
 
 class Question(db.Model):
     __tablename__ = 'question'

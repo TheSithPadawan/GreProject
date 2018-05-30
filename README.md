@@ -9,10 +9,14 @@ Run app.py to create two tables
 $python app.py
 
 Directory Setup:
-- GREFlaskProject
+- GREFlaskProject/
+    - templates/
+	- action.html
     - app.py
     - data.csv
     - read_data.py
+    - index.html
+
 Run read_data.py to insert records to gre_db
 $python read_data.py
 

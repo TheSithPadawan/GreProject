@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+</head>
+<body>
+
+    <div ng-app="app" ng-controller="MainCtrl" class="list-group">
+        <div class="list-group-item" ng-repeat="item in messages">
+            <h4 class="list-group-item-heading">{{ item.question }}</h4>
+            <p class="list-group-item-text">{{item.options}}</p >
+        </div>
+    </div>
+    <script>
+        var myApp = angular.module('app',[]);
+        myApp.controller('MainCtrl', function ($scope, $http){
+            $http.get('http://127.0.0.1:5000/').then(function(response){
+                $scope.messages = response.data;
+            },function (error){
+                console.log(error, 'cannot get data.');
+            });
+        });
+    </script>
+
+     <form action="http://127.0.0.1:5000/action" method="POST">
+         Answer to Q1:<br>
+         <input type="text" name="ans1" value="">
+         <br>
+         Answer to Q2:<br>
+         <input type="text" name="ans2" value="">
+         <br><br>
+         <input type="submit" value="Check Answer">
+    </form>
+
+</body>
+</html>

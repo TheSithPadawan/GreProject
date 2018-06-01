@@ -22,15 +22,31 @@
         });
     </script>
 
-     <form action="http://127.0.0.1:5000/action" method="POST">
-         Answer to Q1:<br>
-         <input type="text" name="ans1" value="">
-         <br>
-         Answer to Q2:<br>
-         <input type="text" name="ans2" value="">
-         <br><br>
-         <input type="submit" value="Check Answer">
+    <form>
+    <div>Answer to Q1: <input type="text" name="ans1" id="a"></div>
+    <div>Answer to Q2: <input type="text" name="ans2" id="b"></div>
+    <div><input id="submit" name="submit" type="submit" value="Submit"></div>
     </form>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.serializejson.js"></script>
+
+    <script>
+        $( "form" ).submit(function( event ) {
+            var data = $( this ).serializeJSON() ;
+            event.preventDefault();
+            //sending data to server
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","http://127.0.0.1:5000/action", true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+            var jsonString = JSON.stringify(data);
+            xhr.send(jsonString);
+            console.log(jsonString);
+            var body = xhr.response
+            console.log(body);
+    });
+
+    </script>
 
 </body>
 </html>

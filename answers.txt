@@ -1,0 +1,6 @@
+id;answer1;answer2;question_id
+1;"B";"D";1
+2;"C";"E";2
+3;"C";"F";3
+4;"C";"F";4
+

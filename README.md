@@ -8,6 +8,9 @@ Database: postgres
 Download & install PostgreSQL
 Set admin password to be Florence
 Create a database called gre_db
+
+The first time you run the program, it will create two tables in the gre_db: questions and answers. You need to mannually insert the records to these tables using records in questions.txt and answers.txt
+
 3. running the project in virtual environment such as virtualenv/venv is recommended
 ## Installing dependencies
 ```

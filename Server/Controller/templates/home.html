@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+ {% block content %}
+        <div class="container questions">
+            <div class="row">
+                {% for question in questions %}
+                    <p>{{ question.text }}</p>
+                    <p>{{ question.a }}</p>
+                    <p>{{ question.b }}</p>
+                    <p>{{ question.c }}</p>
+                    <p>{{ question.d }}</p>
+                    <p>{{ question.e }}</p>
+                    <p>{{ question.f }}</p>
+                    <span class="label label-info"><a href="{{ url_for('main.submit_ans', question_id=question.question_id) }}" style="color: floralwhite"> submit </a></span>
+                    <br><hr>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}

@@ -1,0 +1,42 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+     {% block head %}
+        <head>
+            <title> Crack-GRE </title>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+        </head>
+    {% endblock head %}
+
+     {% block body %}
+    <body>
+    <div class="wrapper">
+        {# navigation bar #}
+        {% block navbar %}
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <a class="navbar navbar-text" href="{{ url_for('main.display_questions') }}">
+                        <h3 class="title"> Demo </h3>
+                    </a>
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href="{{ url_for('main.display_questions') }}"> Home </a></li>
+                    </ul>
+                </div>
+            </nav>
+        {% endblock navbar %}
+
+        {% for message in get_flashed_messages() %}
+                <div class=" container alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert"></button>
+                    {{ message }}
+                </div>
+        {% endfor %}
+
+        {# empty block for custom content #}
+        {% block content %} {% endblock content %}
+        </div>
+    </body>
+    {% endblock body %}
+</html>

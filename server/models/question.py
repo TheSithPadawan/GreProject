@@ -1,14 +1,14 @@
-from Server import db
+from server import db
+import random
 
 '''
 currently only supports questions 
 with 6 answers A - F
 '''
-class Question(db.Model):
+class QuestionModel(db.Model):
     __tablename__ = 'question'
     id = db.Column(db.Integer, primary_key=True, unique=True)
     text = db.Column(db.String(5000), nullable=False)
-    question_id = db.Column(db.Integer, unique=True)
     a = db.Column(db.String(5000), nullable=False)
     b = db.Column(db.String(5000), nullable=False)
     c = db.Column(db.String(5000), nullable=False)
@@ -16,8 +16,7 @@ class Question(db.Model):
     e = db.Column(db.String(5000), nullable=False)
     f = db.Column(db.String(5000), nullable=False)
 
-    def __init__(self, question_id, text, a, b, c, d, e, f):
-        self.question_id = question_id
+    def __init__(self, text, a, b, c, d, e, f):
         self.text = text
         self.a = a
         self.b = b
@@ -25,3 +24,15 @@ class Question(db.Model):
         self.d = d
         self.e = e
         self.f = f
+
+    def json(self):
+        return {'id': self.id, 'question':self.text, 'options':[{'A':self.a}, {'B': self.b}, {'C': self.c},
+                                                 {'D': self.d}, {'E': self.e}, {'F': self.f}]}
+
+    @classmethod
+    def get_random_question(cls):
+        questions=cls.query.all()
+        num = random.randint(0, len(questions) - 1)
+        return questions[num]
+
+

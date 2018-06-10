@@ -9,7 +9,7 @@ bootstrap = Bootstrap()
 #todo: register blueprints
 def create_app():
     app = Flask(__name__)
-    configuration = '../Config/dev.py'
+    configuration = '../config/dev.py'
     # using info in dev.py to config the current app
     # mainly the database credentials
     app.config.from_pyfile(configuration)
@@ -20,7 +20,7 @@ def create_app():
     bootstrap.init_app(app)
 
     #register blueprints
-    from Server.Controller import main
+    from server.controller import main
     app.register_blueprint(main)
     return app
 

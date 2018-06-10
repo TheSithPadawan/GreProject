@@ -1,4 +1,4 @@
 from flask import Blueprint
 main = Blueprint('main', __name__, template_folder='templates')
 
-from Server.Controller import routes
+from server.controller import routes

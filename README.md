@@ -16,9 +16,12 @@ The first time you run the program, it will create two tables in the gre_db: que
 ```
 pip install -r requirements.txt
 ```
-## Running the program
+## Front end dev
 ```
-python start.py
+use the following end points to get questions from database
+GET http://127.0.0.1/random_question to get one random question in JSON format
+GET http://127.0.0.1/questions to get all questions in database in JSON format
+GET http://127.0.0.1/answer/id replace id with question id to get the answer to a specific question  
 ```
 ## Checking out the browser
 Go to the localhost:port to interact with the webpage. The localhost is usually http://127.0.0.1:5000

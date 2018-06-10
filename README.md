@@ -19,9 +19,14 @@ pip install -r requirements.txt
 ## Front end dev
 ```
 use the following end points to get questions from database
-GET http://127.0.0.1/random_question to get one random question in JSON format
-GET http://127.0.0.1/questions to get all questions in database in JSON format
-GET http://127.0.0.1/answer/id replace id with question id to get the answer to a specific question  
+GET http://127.0.0.1:5000/random_question to get one random question in JSON format
+GET http://127.0.0.1:5000/questions to get all questions in database in JSON format
+GET http://127.0.0.1:5000/answer/id replace id with question id to get the answer to a specific question  
+```
+Note that please don't use the routes for a RESTful API. 
+Start the server by:
+```
+$python app.py 
 ```
 ## Checking out the browser
 Go to the localhost:port to interact with the webpage. The localhost is usually http://127.0.0.1:5000

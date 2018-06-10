@@ -1,1 +1,4 @@
 __pycache__
+server/__pychache__/
+server/controller/__pycache__/
+server/models/__pycache__/

@@ -1,3 +1,6 @@
+'''
+DEPRECATED CODE: DO NOT USE
+'''
 from server.models import question, answer
 from server import db
 from server.controller import main

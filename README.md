@@ -22,6 +22,13 @@ use the following end points to get questions from database
 GET http://127.0.0.1:5000/random_question to get one random question in JSON format
 GET http://127.0.0.1:5000/questions to get all questions in database in JSON format
 GET http://127.0.0.1:5000/answer/id replace id with question id to get the answer to a specific question  
+POST http://127.0.0.1:5000/answer/id replace id with question id to post user answer to a specific question
+
+Use the following json format for the POST request:
+{
+"usr_ans1": "blah",
+"usr_ans2": blah"
+}
 ```
 Note that please don't use the routes for a RESTful API. 
 Start the server by:

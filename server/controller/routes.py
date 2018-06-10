@@ -1,17 +1,17 @@
-from Server.Model import Question, Answer
-from Server import db
-from Server.Controller import main
+from server.models import question, answer
+from server import db
+from server.controller import main
 from flask import render_template, request, redirect, url_for, flash
-from Server.Controller.forms import SubmitAnsForm
+from server.controller.forms import SubmitAnsForm
 
 @main.route('/')
 def display_questions():
-    questions = db.session.query(Question.Question).all()
+    questions = db.session.query(question.Question).all()
     return render_template('home.html', questions=questions)
 
 @main.route('/submit_answer/<question_id>', methods = ['POST', 'GET'])
 def submit_ans(question_id):
-    ans = db.session.query(Answer.Answer).filter_by(question_id=question_id).first()
+    ans = db.session.query(answer.Answer).filter_by(question_id=question_id).first()
     form = SubmitAnsForm()
     # if it's a POST
     if form.validate_on_submit():

@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ## Front end dev
 ```
 use the following end points to get questions from database
-GET http://127.0.0.1:5000/random_question to get one random question in JSON format
+GET http://127.0.0.1:5000/one_question to get one random question in JSON format
 GET http://127.0.0.1:5000/questions to get all questions in database in JSON format
 GET http://127.0.0.1:5000/answer/id replace id with question id to get the answer to a specific question  
 POST http://127.0.0.1:5000/answer/id replace id with question id to post user answer to a specific question

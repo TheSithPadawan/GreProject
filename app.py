@@ -47,5 +47,7 @@ api.add_resource(Question, '/one_question')
 api.add_resource(QuestionList,'/questions')
 api.add_resource(Answer, '/answer/<int:id_>')
 
-if __name__ == "__main__":
+
+with flask_app.app_context():
+    db.create_all()
     flask_app.run()

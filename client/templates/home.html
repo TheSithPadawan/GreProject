@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>hello world</title>
+  <title>Page Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
 </head>
 <body>
+	<div ng-app="app" ng-controller="MainCtrl" class="list-group">
+		<form name="myForm">
+		    <div class="list-group-item">
+		    	<h4 class="list-group-item-heading">{{messages.aliceblue}}</h4>
+				<label><input type="radio" value="A" ng-model="answers.value1">{{messages.antiquewhite}}</label>
+				<label><input type="radio" value="B" ng-model="answers.value1">{{messages.aqua}}</label>
+				<label><input type="radio" value="C" ng-model="answers.value1">{{messages.aquamarine}}</label>
+				<br>
+				<label><input type="radio" value="D" ng-model="answers.value2">{{messages.azure}}</label>
+				<label><input type="radio" value="E" ng-model="answers.value2">{{messages.beige}}</label>
+				<label><input type="radio" value="F" ng-model="answers.value2">{{messages.bisque}}</label>
+		    </div>
+			<button type="submit" class="btn btn-success" ng-click="submit()">Submit</button>
+		</form>
+	</div>
+	<script>
+	var myApp = angular.module('app', []);
 
+	myApp.controller('MainCtrl', function ($scope, $http) {
+		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+        $http.get('https://raw.githubusercontent.com/corysimmons/colors.json/master/colors.json')
+        .then(function (response) {
+			 	$scope.messages = response.data;
+			},function (error){
+			    console.log(error, 'can not get data.');
+		});
+
+      	$scope.submit = function() {
+        	var form = JSON.stringify({usr_ans1: $scope.answers.value1, usr_ans2: $scope.answers.value2});
+        	var url = "http://localhost:9900";
+        	console.log(form);
+        	$http.post(url, form) 
+        	.then(function successCallback(response) {
+			       console.log(response);
+			}, function errorCallback(error) {
+			       console.log(error);
+
+			});
+      	};
+
+	});
+	</script>
 </body>
 </html>

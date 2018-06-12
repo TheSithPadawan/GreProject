@@ -70,7 +70,7 @@
 			 		$scope.result =  $sce.trustAsHtml('<div class="alert alert-danger" role="alert"> You are wrong </div>');
 			 		$scope.solution = $sce.trustAsHtml('<div> The correct answer is ' + $scope.references.answer1 + ' & ' + $scope.references.answer2 + '</div>');
 			 	}
-			 	// replace http://google.com with your link to /one_question
+			 	// replace http://google.com with your link to this html
 		 		$scope.nextone = $sce.trustAsHtml('<a href="http://google.com" class="btn btn-primary">Pick Random One</a>');			 	
 			},function (error){
 				    

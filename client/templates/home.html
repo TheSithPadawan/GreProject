@@ -8,24 +8,31 @@
 	<div ng-app="app" ng-controller="MainCtrl" class="list-group">
 		<form name="myForm">
 		    <div class="list-group-item">
-		    	<h4 class="list-group-item-heading">{{messages.aliceblue}}</h4>
-				<label><input type="radio" value="A" ng-model="answers.value1">{{messages.antiquewhite}}</label>
-				<label><input type="radio" value="B" ng-model="answers.value1">{{messages.aqua}}</label>
-				<label><input type="radio" value="C" ng-model="answers.value1">{{messages.aquamarine}}</label>
+		    	<h4 class="list-group-item-heading">{{messages.question}}</h4>
+				<label><input type="radio" value="A" ng-model="answers.value1">A. {{messages.options[0].A}}</label>
+				<label><input type="radio" value="B" ng-model="answers.value1">B. {{messages.options[1].B}}</label>
+				<label><input type="radio" value="C" ng-model="answers.value1">C. {{messages.options[2].C}}</label>
 				<br>
-				<label><input type="radio" value="D" ng-model="answers.value2">{{messages.azure}}</label>
-				<label><input type="radio" value="E" ng-model="answers.value2">{{messages.beige}}</label>
-				<label><input type="radio" value="F" ng-model="answers.value2">{{messages.bisque}}</label>
+				<label><input type="radio" value="D" ng-model="answers.value2">D. {{messages.options[3].D}}</label>
+				<label><input type="radio" value="E" ng-model="answers.value2">E. {{messages.options[4].E}}</label>
+				<label><input type="radio" value="F" ng-model="answers.value2">F. {{messages.options[5].F}}</label>
 		    </div>
 			<button type="submit" class="btn btn-success" ng-click="submit()">Submit</button>
 		</form>
+
+		<section>
+			<div><p ng-bind-html="result"></p></div>
+			<div><p ng-bind-html="solution"></p></div>
+			<div><p ng-bind-html="nextone"></p></div>
+		</section>
 	</div>
 	<script>
 	var myApp = angular.module('app', []);
 
-	myApp.controller('MainCtrl', function ($scope, $http) {
+	myApp.controller('MainCtrl', function ($scope, $http, $sce) {
 		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-        $http.get('https://raw.githubusercontent.com/corysimmons/colors.json/master/colors.json')
+		// replace the following with your link to /one_question
+        $http.get('https://raw.githubusercontent.com/TheSithPadawan/GreProject/master/one_question.json')
         .then(function (response) {
 			 	$scope.messages = response.data;
 			},function (error){
@@ -33,15 +40,24 @@
 		});
 
       	$scope.submit = function() {
-        	var form = JSON.stringify({usr_ans1: $scope.answers.value1, usr_ans2: $scope.answers.value2});
-        	var url = "http://localhost:9900";
-        	console.log(form);
-        	$http.post(url, form) 
-        	.then(function successCallback(response) {
-			       console.log(response);
-			}, function errorCallback(error) {
-			       console.log(error);
-
+			// replace the following with your link to get_ans
+			$http.get('https://raw.githubusercontent.com/TheSithPadawan/GreProject/master/get_ans.json')
+	        .then(function (response) {
+			 	$scope.references = response.data;
+			 	if($scope.answers.value1 == $scope.references.answer1 && $scope.answers.value2 == $scope.references.answer2){
+			 		// the answer is right
+			 		console.log("you are right");
+			 		$scope.result =  $sce.trustAsHtml("<div> You are right </div>");
+			 	}else{
+			 		//the answer is wrong 
+			 		console.log("you are wrong");
+			 		$scope.result =  $sce.trustAsHtml("<div> You are wrong </div>");
+			 		$scope.solution = $sce.trustAsHtml('<div> The correct answer is ' + $scope.references.answer1 + ' & ' + $scope.references.answer2 + '</div>');
+			 	}
+			 	// replace http://google.com with your link to /one_question
+		 		$scope.solution = $sce.trustAsHtml('<a href="http://google.com" class="button">Pick Random One</a>');			 	
+			},function (error){
+				    
 			});
       	};
 

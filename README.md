@@ -36,7 +36,7 @@ Start the server by:
 $python app.py 
 ```
 You can also test out all the endpoints by installing postman plug-in and use the following collection link to get all
-all the tests for endpoints:
+the tests for endpoints:
 https://www.getpostman.com/collections/dc44c9a63e40b5982dd8
 ## Checking out the browser
 Go to the localhost:port to interact with the webpage. The localhost is usually http://127.0.0.1:5000

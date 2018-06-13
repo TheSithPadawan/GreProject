@@ -48,7 +48,7 @@
 	myApp.controller('MainCtrl', function ($scope, $http, $sce) {
 		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 		// replace the following with your link to /one_question
-        $http.get('https://raw.githubusercontent.com/TheSithPadawan/GreProject/master/one_question.json')
+        $http.get('https://127.0.0.1:5000/one_question')
         .then(function (response) {
 			 	$scope.messages = response.data;
 			},function (error){
@@ -57,21 +57,21 @@
 
       	$scope.submit = function() {
 			// replace the following with your link to get_ans
-			$http.get('https://raw.githubusercontent.com/TheSithPadawan/GreProject/master/get_ans.json')
+			$http.get('https://127.0.0.1:5000/answer/'+ $scope.messages.id)
 	        .then(function (response) {
 			 	$scope.references = response.data;
 			 	if($scope.answers.value1 == $scope.references.answer1 && $scope.answers.value2 == $scope.references.answer2){
 			 		// the answer is right
-			 		console.log("you are right");
+			 		console.log("correct answer");
 			 		$scope.result =  $sce.trustAsHtml('<div class="alert alert-success" role="alert"> You are right </div>');
 			 	}else{
 			 		//the answer is wrong 
-			 		console.log("you are wrong");
+			 		console.log("incorrect answer");
 			 		$scope.result =  $sce.trustAsHtml('<div class="alert alert-danger" role="alert"> You are wrong </div>');
 			 		$scope.solution = $sce.trustAsHtml('<div> The correct answer is ' + $scope.references.answer1 + ' & ' + $scope.references.answer2 + '</div>');
 			 	}
 			 	// replace http://google.com with your link to this html
-		 		$scope.nextone = $sce.trustAsHtml('<a href="http://google.com" class="btn btn-primary">Pick Random One</a>');			 	
+		 		$scope.nextone = $sce.trustAsHtml('<a href=window.location class="btn btn-primary">Pick Random One</a>');
 			},function (error){
 				    
 			});

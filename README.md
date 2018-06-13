@@ -33,10 +33,21 @@ Use the following json format for the POST request:
 Note that please don't use the routes for a RESTful API. 
 Start the server by:
 ```
-$python app.py 
+$ python app.py
 ```
 You can also test out all the endpoints by installing postman plug-in and use the following collection link to get all
 the tests for endpoints:
 https://www.getpostman.com/collections/dc44c9a63e40b5982dd8
 ## Checking out the browser
-Go to the localhost:port to interact with the webpage. The localhost is usually http://127.0.0.1:5000
+First start the back end server by:
+```
+$ python app.py
+```
+this will enable the GET/POST endpoints
+
+Then start a local server on your computer. E.g.
+```
+python -m http.server 8000
+```
+This will start a server on port 8000. Then go to http://127.0.0.1:8000/home.html to interact with the web app.
+

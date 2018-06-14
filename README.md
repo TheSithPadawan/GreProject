@@ -45,9 +45,13 @@ $ python app.py
 ```
 this will enable the GET/POST endpoints
 
+You can use a HTTP server to start the front end. 
+First, cd to the directory where home.html is located 
+
 Then start a local server on your computer. E.g.
 ```
 python -m http.server 8000
 ```
+
 This will start a server on port 8000. Then go to http://127.0.0.1:8000/home.html to interact with the web app.
 

@@ -1,6 +1,0 @@
-id;text;question_id;a;b;c;d;e;f
-1;"Many fashions that were considered daring in their time have been so widely worn and imitated that the (i)__ style is no longer seen as (ii)__.";1;"A. proposed";"B. original";"C. revealing";"D. outlandish";" E. commonplace";" F. copied"
-2;"The Johnsons were not known for their (i)__; at the very least, none of the family members were fearful of (ii)__, of appearing or acting differently from other people.";2;"A. candor";"B. vulgarity";"C. conformity";"D. pettiness";" E. eccentricity";" F. complaisance"
-3;"Although it does contain some pioneering ideas, one would hardly characterize the work as __.";3;"A. orthodox";"B. eccentric";"C. original";"D. trifling";"E. conventional";"F. innovative"
-4;"For those of us who have been intoxicated by the power and potential of mathematics, the mystery isn't why that fascination developed but why it isn't __.";4;"A. advantageous";"B. discounted";" C. prevalent";" D. undervalued";" E. celebrated";" F. widespread"
-

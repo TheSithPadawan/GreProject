@@ -14,6 +14,9 @@ class Question(Resource):
     def get(self):
         return QuestionModel.get_random_question().json()
 
+    def get(self, id_):
+        return QuestionModel.get_question_by_id(id_).json()
+
 class QuestionList(Resource):
     def get(self):
         return {'questions': [q.json() for q in QuestionModel.query.all()]}
@@ -43,7 +46,8 @@ class Answer(Resource):
         return {'message': 'answer is incorrect'}
 
 
-api.add_resource(Question, '/one_question')
+api.add_resource(Question, '/one_question', endpoint = 'get_random_question')
+api.add_resource(Question, '/question/<int:id_>', endpoint = 'get_question_by_id')
 api.add_resource(QuestionList,'/questions')
 api.add_resource(Answer, '/answer/<int:id_>')
 

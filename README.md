@@ -20,8 +20,13 @@ pip install -r requirements.txt
 ```
 use the following end points to get questions from database
 GET http://127.0.0.1:5000/one_question to get one random question in JSON format
+get one question by id
+GET http://127.0.0.1:5000/one_question/<id>
+get all questions in database
 GET http://127.0.0.1:5000/questions to get all questions in database in JSON format
-GET http://127.0.0.1:5000/answer/id replace id with question id to get the answer to a specific question  
+get answer to a specific question
+GET http://127.0.0.1:5000/answer/id replace id with question id to get the answer to a specific question
+post user answer
 POST http://127.0.0.1:5000/answer/id replace id with question id to post user answer to a specific question
 
 Use the following json format for the POST request:

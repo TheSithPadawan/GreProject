@@ -12,10 +12,13 @@ api = Api(flask_app)
 
 class Question(Resource):
     def get(self, id_=None):
-        if id_ == None:
+        if id_ is None:
             return QuestionModel.get_random_question().json()
         else:
-            return QuestionModel.get_question_by_id(id_).json()
+            q = QuestionModel.get_question_by_id(id_)
+            if q is None:
+                return {'message': "question of id {} does not exist".format(id_)}, 404
+            return q.json()
 
 
 class QuestionList(Resource):

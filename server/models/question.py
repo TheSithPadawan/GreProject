@@ -35,4 +35,8 @@ class QuestionModel(db.Model):
         num = random.randint(0, len(questions) - 1)
         return questions[num]
 
+    @classmethod
+    def get_question_by_id(cls, id_):
+        return cls.query.filter_by(id=id_).first()
+
 

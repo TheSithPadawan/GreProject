@@ -11,8 +11,15 @@ flask_app = create_app()
 api = Api(flask_app)
 
 class Question(Resource):
-    def get(self):
-        return QuestionModel.get_random_question().json()
+    def get(self, id_=None):
+        if id_ is None:
+            return QuestionModel.get_random_question().json()
+        else:
+            q = QuestionModel.get_question_by_id(id_)
+            if q is None:
+                return {'message': "question of id {} does not exist".format(id_)}, 404
+            return q.json()
+
 
 class QuestionList(Resource):
     def get(self):
@@ -43,7 +50,8 @@ class Answer(Resource):
         return {'message': 'answer is incorrect'}
 
 
-api.add_resource(Question, '/one_question')
+api.add_resource(Question, '/one_question', endpoint = 'get_random_question')
+api.add_resource(Question, '/one_question/<int:id_>', endpoint = 'get_question_by_id')
 api.add_resource(QuestionList,'/questions')
 api.add_resource(Answer, '/answer/<int:id_>')
 

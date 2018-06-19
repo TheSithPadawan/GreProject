@@ -2,60 +2,53 @@
 endpoints for the web app
 '''
 from server import create_app, db
-from flask_restful import Api, Resource, reqparse
-from server.models.question import QuestionModel
-from server.models.answer import AnswerModel
-from flask import request
+from server.resources.user_resource import UserRegister, UserLogin, TokenRefresh
+from server.resources.question_resource import Question, QuestionList
+from server.resources.answer_resource import Answer
+from flask_jwt_extended import JWTManager
+from flask_restful import Api
+from flask import Flask
+
 
 flask_app = create_app()
+flask_app.secret_key = 'topsecret'
 api = Api(flask_app)
 
-class Question(Resource):
-    def get(self, id_=None):
-        if id_ is None:
-            return QuestionModel.get_random_question().json()
-        else:
-            q = QuestionModel.get_question_by_id(id_)
-            if q is None:
-                return {'message': "question of id {} does not exist".format(id_)}, 404
-            return q.json()
+# register with JWTManager
+jwt = JWTManager(flask_app)
+
+@jwt.expired_token_loader
+def expired_token_callback():
+    return jsonify({
+        'message':'access token expired.',
+        'error':'token_expired'
+    }), 401
+
+@jwt.invalid_token_loader
+def invalid_token_callback(error):
+    return jsonify({
+        'message':'token provided is invalid',
+        'error': 'invalid_token'
+    }), 401
+
+@jwt.revoked_token_loader
+def revoked_token_callback():
+    return jsonify({
+        'message': 'the token has been revoked.',
+        'error': 'token_revoked'
+    }), 401
 
 
-class QuestionList(Resource):
-    def get(self):
-        return {'questions': [q.json() for q in QuestionModel.query.all()]}
-
-class Answer(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument("usr_ans1",
-                        type=str,
-                        required=True
-                        )
-    parser.add_argument("usr_ans2",
-                        type=str,
-                        required=True
-                        )
-    def get(self, id_):
-        ans = AnswerModel.get_answer_by_id(id_)
-        if ans:
-            return ans.json()
-        return {'message':'answer to question with id {} does not exist'.format(id_)}, 404
-
-    def post(self, id_):
-        ans = AnswerModel.get_answer_by_id(id_)
-        data = Answer.parser.parse_args()
-        ans_list = sorted([data['usr_ans1'], data['usr_ans2']])
-        if ans.answer1 == ans_list[0] and ans.answer2 == ans_list[1]:
-            return {'message': 'answer is correct'}
-        return {'message': 'answer is incorrect'}
-
-
+# adding resources
 api.add_resource(Question, '/one_question', endpoint = 'get_random_question')
 api.add_resource(Question, '/one_question/<int:id_>', endpoint = 'get_question_by_id')
 api.add_resource(QuestionList,'/questions')
 api.add_resource(Answer, '/answer/<int:id_>')
+api.add_resource(UserRegister, '/register')
+api.add_resource(UserLogin, '/login')
+api.add_resource(TokenRefresh, '/refresh')
 
-
-with flask_app.app_context():
-    db.create_all()
-    flask_app.run()
+if __name__ == "__main__":
+    with flask_app.app_context():
+        db.create_all()
+        flask_app.run()

@@ -44,7 +44,6 @@
 	</div>
 	<script>
 	var myApp = angular.module('app', []);
-
 	myApp.controller('MainCtrl', function ($scope, $http, $sce) {
 		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 		// replace the following with your link to /one_question
@@ -54,7 +53,6 @@
 			},function (error){
 			    console.log(error, 'can not get data.');
 		});
-
       	$scope.submit = function() {
 			// replace the following with your link to get_ans
 			$http.get('http://127.0.0.1:5000/answer/' + $scope.messages.id)
@@ -65,7 +63,7 @@
 			 		console.log("correct answer");
 			 		$scope.result =  $sce.trustAsHtml('<div class="alert alert-success" role="alert"> Correct Answer </div>');
 			 	}else{
-			 		//the answer is wrong 
+			 		//the answer is wrong
 			 		console.log("incorrect answer");
 			 		$scope.result =  $sce.trustAsHtml('<div class="alert alert-danger" role="alert"> Incorrect Answer </div>');
 			 		$scope.solution = $sce.trustAsHtml('<div> The correct answer is ' + $scope.references.answer1 + ' & ' + $scope.references.answer2 + '</div>');
@@ -73,10 +71,9 @@
 			 	// replace http://google.com with your link to this html
 		 		$scope.nextone = $sce.trustAsHtml('<a href=http://127.0.0.1:8000/home.html class="btn btn-primary">Pick Random One</a>');
 			},function (error){
-				    
+
 			});
       	};
-
 	});
 	</script>
 </body>

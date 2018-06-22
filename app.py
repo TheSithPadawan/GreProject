@@ -8,11 +8,16 @@ from server.resources.answer_resource import Answer
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from flask import Flask
+from flask_cors import CORS
 
 
 flask_app = create_app()
 flask_app.secret_key = 'topsecret'
 api = Api(flask_app)
+CORS(flask_app, origins="http://localhost:4200", allow_headers=[
+    "Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
+    supports_credentials=True, intercept_exceptions=False)
+
 
 # register with JWTManager
 jwt = JWTManager(flask_app)

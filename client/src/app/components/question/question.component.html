@@ -1,0 +1,14 @@
+<div *ngIf="data$" class="container">
+    <div class="question_body">
+        <h4>{{ data$.id }}.{{ data$.question }}</h4>
+        <li *ngFor="let option of data$.options">
+            {{ option['A'] }}
+            {{ option['B'] }}
+            {{ option['C'] }}
+            {{ option['D'] }}
+            {{ option['E'] }}
+            {{ option['F'] }}
+        </li>
+    </div>
+</div>
+

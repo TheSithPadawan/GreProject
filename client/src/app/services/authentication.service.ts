@@ -9,7 +9,7 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     return this.http.post('http://127.0.0.1:5000/login', {username: username, password: password})
-      .pipe(map((res) => {
+      .pipe(map((res:any) => {
         // login successful if there's a jwt token in the response
         if (res && res.token) {
           // store username and jwt token in local storage to keep user logged in between page refreshes
@@ -20,7 +20,7 @@ export class AuthenticationService {
 
   register(username: string, password: string) {
     return this.http.post('http://127.0.0.1:5000/register', {username: username, password: password})
-      .pipe(map((res) => {
+      .pipe(map((res:any) => {
         // login successful if there's a jwt token in the response
         if (res && res.token) {
           // store username and jwt token in local storage to keep user logged in between page refreshes

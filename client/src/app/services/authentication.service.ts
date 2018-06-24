@@ -21,7 +21,7 @@ export class AuthenticationService {
   register(username: string, password: string) {
     return this.http.post('http://127.0.0.1:5000/register', {username: username, password: password})
       .pipe(map((res:any) => {
-        // login successful if there's a jwt token in the response
+        // register successful if there's a jwt token in the response
         if (res && res.access_token) {
           // store username and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify({username: username, token: res.access_token}));
@@ -30,8 +30,13 @@ export class AuthenticationService {
   }
 
   logout() {
-    // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    // remove user from local storage to log user out
+    return this.http.post('http://127.0.0.1:5000/logout', {})
+      .pipe(map((res:any) => {
+        // logout successful if there's a jwt token in the response
+        console.log(res.message)
+      }));
   }
 
   public get loggedIn(): boolean {

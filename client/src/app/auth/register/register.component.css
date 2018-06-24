@@ -1,3 +1,24 @@
 #register_form {
-  margin-top: 100px;
+  float: none;
+  margin: 100px auto 0px auto;
+}
+
+.card {
+  padding: 20px;
+}
+
+.register_header {
+  padding-bottom: 9px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #eee;
+  font-weight: normal;
+  font-size: 32px;
+  color: #00afff;
+}
+
+.AccountPageFooter {
+  margin: 25px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  color: #999;
 }

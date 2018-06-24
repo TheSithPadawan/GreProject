@@ -11,9 +11,9 @@ export class AuthenticationService {
     return this.http.post('http://127.0.0.1:5000/login', {username: username, password: password})
       .pipe(map((res:any) => {
         // login successful if there's a jwt token in the response
-        if (res && res.token) {
+        if (res && res.access_token) {
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({username, token: res.token}));
+          localStorage.setItem('currentUser', JSON.stringify({username: username, token: res.access_token}));
         }
       }));
   }
@@ -22,9 +22,9 @@ export class AuthenticationService {
     return this.http.post('http://127.0.0.1:5000/register', {username: username, password: password})
       .pipe(map((res:any) => {
         // login successful if there's a jwt token in the response
-        if (res && res.token) {
+        if (res && res.access_token) {
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({username, token: res.token}));
+          localStorage.setItem('currentUser', JSON.stringify({username: username, token: res.access_token}));
         }
       }));
   }
@@ -32,5 +32,16 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+  }
+
+  public get loggedIn(): boolean {
+    return (localStorage.getItem('currentUser') === null);
+  }
+
+  public get currentUserName(): object {
+    if(localStorage.getItem('currentUser') !== null) {
+      let data = localStorage.getItem('currentUser');
+      return JSON.parse(data);
+    }
   }
 }

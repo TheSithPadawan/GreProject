@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 db = SQLAlchemy()
+BLACKLIST = set()
 
 #todo: register blueprints
 def create_app():

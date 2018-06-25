@@ -18,8 +18,8 @@ export class AuthenticationService {
       }));
   }
 
-  register(username: string, password: string) {
-    return this.http.post('http://127.0.0.1:5000/register', {username: username, password: password})
+  register(username: string, password: string, email: string) {
+    return this.http.post('http://127.0.0.1:5000/register', {username: username, password: password, email: email})
       .pipe(map((res:any) => {
         // register successful if there's a jwt token in the response
         if (res && res.access_token) {

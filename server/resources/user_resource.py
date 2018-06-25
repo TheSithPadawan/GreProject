@@ -25,8 +25,24 @@ user_parser.add_argument('password',
 handles user registration
 """
 class UserRegister(Resource):
+    reg_parser = reqparse.RequestParser()
+    reg_parser.add_argument('username',
+                             type=str,
+                             required=True,
+                             help="This field cannot be blank."
+                             )
+    reg_parser.add_argument('password',
+                             type=str,
+                             required=True,
+                             help="This field cannot be blank."
+                             )
+    reg_parser.add_argument('email',
+                            type=str,
+                            required=True,
+                            help="This field cannot be blank"
+                            )
     def post(self):
-        data = user_parser.parse_args()
+        data = self.reg_parser.parse_args()
 
         if UserModel.find_by_username(data['username']):
             return {"message": "A user with that username already exists"}, 400

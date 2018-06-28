@@ -1,10 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_bootstrap import Bootstrap
 
 
 db = SQLAlchemy()
-bootstrap = Bootstrap()
+BLACKLIST = set()
 
 #todo: register blueprints
 def create_app():
@@ -15,12 +14,5 @@ def create_app():
     app.config.from_pyfile(configuration)
     # initialize database
     db.init_app(app)
-
-    # bind to bootstrap
-    bootstrap.init_app(app)
-
-    #register blueprints
-    from server.controller import main
-    app.register_blueprint(main)
     return app
 

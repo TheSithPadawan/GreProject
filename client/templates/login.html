@@ -10,28 +10,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-	<div>
-		<form name="form" ng-submit="login()" role="form">
+	<div ng-app="myApp" ng-controller="loginController">
+		<form name="form" ng-submit="login()" class="form">
 		    <div class="form-group">
 		        <label for="username">Username</label>
 		        <i class="fa fa-key"></i>
-		        <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
+		        <input type="text" name="username" id="username" class="form-control" ng-model="loginForm.username" required />
 		    </div>
 		    <div class="form-group">
 		        <label for="password">Password</label>
 		        <i class="fa fa-lock"></i>
-		        <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+		        <input type="password" name="password" id="password" class="form-control" ng-model="loginForm.password" required />
 		    </div>
 		    <div class="form-actions">
-		        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Login</button>
-		        <a href="register.html">Register</a>
+		        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success" ng-click="login()">Login</button>
+		        <a href="register.html">Already have an account? Register</a>
 		    </div>
 		</form>
 	</div>
 	<script>
 	var myApp = angular.module('app', []);
-	myApp.controller('MainCtrl', function ($scope, $http, $sce) {
-		
+	myApp.controller('loginController', function ($scope, $location, $http) {
+		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+		$scope.login = function {
+			$http.post('http://127.0.0.1:5000/login', 
+			{
+				'username' $scope.loginForm.username: ,
+				'password': $scope.loginForm.password
+			})	
+			.then(function(response) {
+				$location.path('/home.html');
+				$scope.loginForm = {}; 
+			},
+			function(error) {
+				$scope.errorMessage = error.data;
+				$scope.loginForm = {};
+			});
+		};
 	});
 	</script>
 </body>

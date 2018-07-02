@@ -1,0 +1,25 @@
+<h4> {{data.id}}. {{data.question}}</h4>
+<!--<div *ngFor="let option of data.options">-->
+  <!--<input type="radio" (click)="getValue(option[0])">{{option[0]}}. {{option[1]}}-->
+<!--</div>-->
+<form #f="ngForm">
+  <div>
+    <tr>
+      <input type="radio" name="group1" value="A" [(ngModel)]="usr_ans1"> {{data.options[0][0]}}. {{data.options[0][1]}}
+      <input type="radio" name="group1" value="B" [(ngModel)]="usr_ans1"> {{data.options[1][0]}}. {{data.options[1][1]}}
+      <input type="radio" name="group1" value="C" [(ngModel)]="usr_ans1"> {{data.options[2][0]}}. {{data.options[2][1]}}
+    </tr>
+    <tr>
+      <input type="radio" name="group2" value="D" [(ngModel)]="usr_ans2"> {{data.options[3][0]}}. {{data.options[3][1]}}
+      <input type="radio" name="group2" value="E" [(ngModel)]="usr_ans2"> {{data.options[4][0]}}. {{data.options[4][1]}}
+      <input type="radio" name="group2" value="F" [(ngModel)]="usr_ans2"> {{data.options[5][0]}}. {{data.options[5][1]}}
+    </tr>
+  </div>
+  <div>
+    <button class="btn btn-primary" type="submit" (click)="onSubmit(data.id)"> Submit </button>
+  </div>
+</form>
+<p>{{status}}</p>
+<p *ngIf="submitted && !checkAns()">Correct answer: {{ans.answer1}} {{ans.answer2}}</p>
+
+

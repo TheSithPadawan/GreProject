@@ -1,61 +1,85 @@
 '''
 endpoints for the web app
 '''
-from server import create_app, db
-from flask_restful import Api, Resource, reqparse
-from server.models.question import QuestionModel
-from server.models.answer import AnswerModel
-from flask import request
+from server import create_app, db, BLACKLIST
+from server.resources.user_resource import UserRegister, UserLogin, TokenRefresh, UserLogout
+from server.resources.question_resource import Question, QuestionList
+from server.resources.answer_resource import Answer
+from flask_jwt_extended import JWTManager
+from flask_restful import Api
+from flask import Flask
+from flask_cors import CORS
+
 
 flask_app = create_app()
+flask_app.secret_key = 'topsecret'
 api = Api(flask_app)
-
-class Question(Resource):
-    def get(self, id_=None):
-        if id_ is None:
-            return QuestionModel.get_random_question().json()
-        else:
-            q = QuestionModel.get_question_by_id(id_)
-            if q is None:
-                return {'message': "question of id {} does not exist".format(id_)}, 404
-            return q.json()
+CORS(flask_app, origins="http://localhost:4200", allow_headers=[
+    "Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
+    supports_credentials=True, intercept_exceptions=False)
 
 
-class QuestionList(Resource):
-    def get(self):
-        return {'questions': [q.json() for q in QuestionModel.query.all()]}
+# register with JWTManager
+jwt = JWTManager(flask_app)
+# JWT related configuration
+flask_app.config['JWT_BLACKLIST_ENABLED'] = True
+flask_app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 
-class Answer(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument("usr_ans1",
-                        type=str,
-                        required=True
-                        )
-    parser.add_argument("usr_ans2",
-                        type=str,
-                        required=True
-                        )
-    def get(self, id_):
-        ans = AnswerModel.get_answer_by_id(id_)
-        if ans:
-            return ans.json()
-        return {'message':'answer to question with id {} does not exist'.format(id_)}, 404
+'''
+customized JWT configuration
+'''
+@jwt.expired_token_loader
+def expired_token_callback():
+    return jsonify({
+        'message':'access token expired.',
+        'error':'token_expired'
+    }), 401
 
-    def post(self, id_):
-        ans = AnswerModel.get_answer_by_id(id_)
-        data = Answer.parser.parse_args()
-        ans_list = sorted([data['usr_ans1'], data['usr_ans2']])
-        if ans.answer1 == ans_list[0] and ans.answer2 == ans_list[1]:
-            return {'message': 'answer is correct'}
-        return {'message': 'answer is incorrect'}
+@jwt.invalid_token_loader
+def invalid_token_callback(error):
+    return jsonify({
+        'message':'token provided is invalid',
+        'error': 'invalid_token'
+    }), 401
+
+@jwt.revoked_token_loader
+def revoked_token_callback():
+    return jsonify({
+        'message': 'the token has been revoked.',
+        'error': 'token_revoked'
+    }), 401
+
+# check if a token is blacklisted
+@jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(decrypted_token):
+    return decrypted_token['jti'] in BLACKLIST
+
+@jwt.unauthorized_loader
+def missing_token_callback(error):
+    return jsonify({
+        "description": "Request does not contain an access token.",
+        'error': 'authorization_required'
+    }), 401
+
+@jwt.needs_fresh_token_loader
+def token_not_fresh_callback():
+    return jsonify({
+        "description": "The token is not fresh.",
+        'error': 'fresh_token_required'
+    }), 401
 
 
+# adding resources
 api.add_resource(Question, '/one_question', endpoint = 'get_random_question')
 api.add_resource(Question, '/one_question/<int:id_>', endpoint = 'get_question_by_id')
 api.add_resource(QuestionList,'/questions')
 api.add_resource(Answer, '/answer/<int:id_>')
+api.add_resource(UserRegister, '/register')
+api.add_resource(UserLogin, '/login')
+api.add_resource(TokenRefresh, '/refresh')
+api.add_resource(UserLogout, '/logout')
 
-
-with flask_app.app_context():
-    db.create_all()
-    flask_app.run()
+if __name__ == "__main__":
+    with flask_app.app_context():
+        db.create_all()
+        flask_app.run()

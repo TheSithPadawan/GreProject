@@ -1,5 +1,4 @@
-{
-    "questions": [
+[
         {
             "id": 1,
             "question": "Many fashions that were considered daring in their time have been so widely worn and imitated that the (i)__ style is no longer seen as (ii)__.",
@@ -182,5 +181,4 @@
             "user_ans": ["C","E"],
             "correct_ans": ["C", "E"]
         }
-    ]
-}
+]

@@ -22,7 +22,7 @@ import { FavListComponent } from './components/fav-list/fav-list.component';
     QuestionComponent,
     LoginComponent,
     RegisterComponent,
-    FavListComponent
+    FavListComponent,
   ],
   imports: [
     BrowserModule,

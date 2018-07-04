@@ -17,46 +17,56 @@ export class QuestionComponent implements OnInit {
   usr_ans1 = '';
   usr_ans2 = '';
   status = '';
-  ans: Answer;
+  ans = {
+    'answer1': 'something',
+    'answer2': 'something'
+  }
   submitted = false;
 
   ngOnInit() {
     this.question.getOneQuestion().subscribe(
-      question => {
-        this.data.id = question['id'];
-        this.data.question = question['question'];
-        for (let i = 0; i < question['options'].length; i++) {
-          const pair = question['options'][i];
-          for (const key in pair) {
-            if (pair.hasOwnProperty(key)) {
-              this.data.options.push([key, pair[key]]);
+        (response: Response) => {
+          this.data.id = response['id'];
+          this.data.question = response['question'];
+          // some transformation of the data
+          for (let i = 0; i < response['options'].length; i++) {
+            const pair = response['options'][i];
+            for (const key in pair) {
+              if (pair.hasOwnProperty(key)) {
+                this.data.options.push(
+                  {
+                    label: key,
+                    content: pair[key]
+                  }
+                );
+              }
             }
           }
         }
-        this.getAns(question['id']);
-      }
     );
   }
+
   getAns(id) {
-    this.question.getAnswer(id).subscribe((response: Answer) => this.ans = {
-      answer1: response['answer1'],
-      answer2: response['answer2']
-    });
+    this.question.getAnswer(id).subscribe(
+      (response: Answer) => {
+        this.ans.answer1 = response['answer1'];
+        this.ans.answer2 = response['answer2'];
+      }
+    ,
+      (error) => console.log(error),
+      () => this.checkAns()
+    );
   }
-  onSubmit() {
-    const result = this.checkAns();
-    if (result) {
-      this.status = 'correct answer';
-    } else {
-      this.status = 'incorrect answer';
-    }
+  onSubmit(question_id) {
+    this.getAns(question_id);
     this.submitted = true;
   }
   checkAns() {
     if (this.usr_ans1 === this.ans.answer1 && this.usr_ans2 === this.ans.answer2) {
-      return true;
+      this.status = 'correct answer';
+    } else {
+      this.status = 'incorrect answer';
     }
-    return false;
   }
 }
 

@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { ReactiveFormsModule } from "@angular/forms";
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './route/app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,8 +29,8 @@ import { RegisterComponent } from './auth/register/register.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

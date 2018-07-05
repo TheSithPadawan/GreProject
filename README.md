@@ -44,15 +44,10 @@ You can also test out all the endpoints by installing postman plug-in and use th
 the tests for endpoints:
 https://www.getpostman.com/collections/dc44c9a63e40b5982dd8
 ## Starting the front end server
-ng serve
-testing the favorite list feature:
-install a json server using npm
 ```
-$ npm install -g json-server
+$ ng serve
 ```
-## Starting the front end server
-ng serve
-testing the favorite list feature:
+testing the favorite list feature using a FAKE REST API:
 install a json server using npm
 ```
 $ npm install -g json-server

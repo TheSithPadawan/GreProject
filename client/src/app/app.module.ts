@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './route/app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { QuestionComponent } from './components/question/question.component';
+import { AllQuestionsComponent } from './components/allQuestions/allQuestions.component';
 
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -19,6 +21,7 @@ import { RegisterComponent } from './auth/register/register.component';
     AppComponent,
     HeaderComponent,
     QuestionComponent,
+    AllQuestionsComponent,
     LoginComponent,
     RegisterComponent
   ],
@@ -27,6 +30,7 @@ import { RegisterComponent } from './auth/register/register.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     OAuthModule.forRoot()
   ],
   providers: [

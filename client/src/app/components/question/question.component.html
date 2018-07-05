@@ -1,5 +1,5 @@
 <div *ngIf="data$" class="container" id="one_question">
-    <div class="question_body">
+    <!-- <div class="question_body">
         <h4>{{ data$.id }}.{{ data$.question }}</h4>
         <li *ngFor="let option of data$.options">
             {{ option['A'] }}
@@ -9,6 +9,27 @@
             {{ option['E'] }}
             {{ option['F'] }}
         </li>
+    </div> -->
+    <div class="question_body">
+        <form name="myForm">
+            <div class="list-group-item">
+                <h4 class>{{data$.id}}. {{data$.question}}</h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <label class="row"><input type="radio">A. {{data$.options[0]['A']}}</label>
+                        <label class="row"><input type="radio">B. {{data$.options[1]['B']}}</label>
+                        <label class="row"><input type="radio">C. {{data$.options[2]['C']}}</label>
+                    </div>
+                    <div class="col-sm">
+                        <label class="row"><input type="radio">D. {{data$.options[3]['D']}}</label>
+                        <label class="row"><input type="radio">E. {{data$.options[4]['E']}}</label>
+                        <label class="row"><input type="radio">F. {{data$.options[5]['F']}}</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
     </div>
 </div>
 
+        

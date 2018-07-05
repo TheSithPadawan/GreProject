@@ -43,20 +43,21 @@ $ python app.py
 You can also test out all the endpoints by installing postman plug-in and use the following collection link to get all
 the tests for endpoints:
 https://www.getpostman.com/collections/dc44c9a63e40b5982dd8
-## Checking out the browser
-First start the back end server by:
+## Starting the front end server
+ng serve
+testing the favorite list feature:
+install a json server using npm
 ```
-$ python app.py
+$ npm install -g json-server
 ```
-this will enable the GET/POST endpoints
-
-You can use a HTTP server to start the front end. 
-First, cd to the directory where home.html is located 
-
-Then start a local server on your computer. E.g.
+## Starting the front end server
+ng serve
+testing the favorite list feature:
+install a json server using npm
 ```
-python -m http.server 8000
+$ npm install -g json-server
 ```
-
-This will start a server on port 8000. Then go to http://127.0.0.1:8000/home.html to interact with the web app.
-
+start the server in another terminal and use the data/db.json as an example
+```
+json-server --watch data/db.json --port 4000
+```

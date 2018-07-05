@@ -8,7 +8,6 @@ import { AppRoutingModule } from './route/app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { QuestionComponent } from './components/question/question.component';
-import { AllQuestionsComponent } from './components/allQuestions/allQuestions.component';
 
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -20,7 +19,6 @@ import { RegisterComponent } from './auth/register/register.component';
     AppComponent,
     HeaderComponent,
     QuestionComponent,
-    AllQuestionsComponent,
     LoginComponent,
     RegisterComponent
   ],

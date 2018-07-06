@@ -25,7 +25,7 @@
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.1",
     "zone.js": "^0.8.26",
-    "@types/angular":"^1.6.48"
+    "@types/angular": "^1.6.48"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.6.8",

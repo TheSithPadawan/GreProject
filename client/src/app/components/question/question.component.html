@@ -1,19 +1,51 @@
-<h4> {{data.id}}. {{data.question}}</h4>
-<form #f="ngForm">
-  <div *ngFor="let option of data.options | slice: 0:3">
-    <tr>
-      <input type="radio" name="group1" [value]="option.label" [(ngModel)]="usr_ans1">{{option.label}}. {{option.content}}
-    </tr>
-  </div>
-  <div *ngFor="let option of data.options | slice: 3:6">
-    <tr>
-      <input type="radio" name="group2" value={{option.label}} [(ngModel)]="usr_ans2">{{option.label}}. {{option.content}}
-    </tr>
-  </div>
-  <div>
-    <button class="btn btn-primary" type="submit" (click)="onSubmit(data.id)"> Submit </button>
-  </div>
-</form>
-<p>{{status}}</p>
-<p *ngIf="submitted && !checkAns()">Correct answer: {{ans.answer1}} {{ans.answer2}}</p>
-
+<div class="container">
+  <h4> {{data.id}}. {{data.question}}</h4>
+  <form #f="ngForm">    
+    <table style="width:95%">
+      <tr>
+        <td>
+          <div *ngFor="let option of data.options | slice: 0:1">
+            <input type="radio" name="group1" [value]="option.label" [(ngModel)]="usr_ans1">&nbsp;{{option.label}}. {{option.content}}
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let option of data.options | slice: 3:4">
+            <input type="radio" name="group2" [value]="option.label" [(ngModel)]="usr_ans2">&nbsp;{{option.label}}. {{option.content}}
+          </div>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <div *ngFor="let option of data.options | slice: 1:2">
+            <input type="radio" name="group1" [value]="option.label" [(ngModel)]="usr_ans1">&nbsp;{{option.label}}. {{option.content}}
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let option of data.options | slice: 4:5">
+            <input type="radio" name="group2" [value]="option.label" [(ngModel)]="usr_ans2">&nbsp;{{option.label}}. {{option.content}}
+          </div>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <div *ngFor="let option of data.options | slice: 2:3">
+            <input type="radio" name="group1" [value]="option.label" [(ngModel)]="usr_ans1">&nbsp;{{option.label}}. {{option.content}}
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let option of data.options | slice: 5:6">
+            <input type="radio" name="group2" [value]="option.label" [(ngModel)]="usr_ans2">&nbsp;{{option.label}}. {{option.content}}
+          </div>
+        </td>
+      </tr> 
+    </table>
+    
+    <div>
+      <button class="btn btn-primary" type="submit" (click)="onSubmit(data.id)"> Submit </button>
+    </div>
+  </form>
+  <p>{{status}}</p>
+  <p *ngIf="submitted && !checkAns()">Correct answer: {{ans.answer1}} {{ans.answer2}}</p>
+</div>

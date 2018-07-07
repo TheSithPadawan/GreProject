@@ -19,5 +19,6 @@ class SubscribeModel(db.Model):
         return cls.query.filter_by(user_id=user_id).all()
 
     def delete_from_db(self):
-        db.session.delete(self)
+        obj = SubscribeModel.query.filter_by(user_id=self.user_id, question_id=self.question_id).first()
+        db.session.delete(obj)
         db.session.commit()

@@ -1,3 +1,11 @@
 <div class="container">
-  display the favorite list
+  <div class="container" *ngFor="let item of items">
+    {{item.id}}. {{item.question}}
+    <div *ngFor="let option of item.options">
+      <tr>{{option.label}}. {{option.content}}</tr>
+    </div>
+    <tr>My answer: {{item.usr_ans}}</tr>
+    <tr>Correct answer: {{item.correct_ans}}</tr>
+    <hr>
+  </div>
 </div>

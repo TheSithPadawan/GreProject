@@ -1,0 +1,227 @@
+{"questions": [
+  {
+    "id": 1,
+    "question": "Many fashions that were considered daring in their time have been so widely worn and imitated that the (i)__ style is no longer seen as (ii)__.",
+    "options": [
+      {
+        "A": "proposed"
+      },
+      {
+        "B": "original"
+      },
+      {
+        "C": "revealing"
+      },
+      {
+        "D": "outlandish"
+      },
+      {
+        "E": "commonplace"
+      },
+      {
+        "F": "copied"
+      }
+    ],
+    "user_ans": [
+      "A",
+      "D"
+    ],
+    "correct_ans": [
+      "B",
+      "D"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "The Johnsons were not known for their (i)__; at the very least, none of the family members were fearful of (ii)__, of appearing or acting differently from other people.",
+    "options": [
+      {
+        "A": "candor"
+      },
+      {
+        "B": "vulgarity"
+      },
+      {
+        "C": "conformity"
+      },
+      {
+        "D": "pettiness"
+      },
+      {
+        "E": "eccentricity"
+      },
+      {
+        "F": "complaisance"
+      }
+    ],
+    "user_ans": [
+      "C",
+      "E"
+    ],
+    "correct_ans": [
+      "C",
+      "E"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Although it does contain some pioneering ideas, one would hardly characterize the work as __.",
+    "options": [
+      {
+        "A": "orthodox"
+      },
+      {
+        "B": "eccentric"
+      },
+      {
+        "C": "original"
+      },
+      {
+        "D": "trifling"
+      },
+      {
+        "E": "conventional"
+      },
+      {
+        "F": "innovative"
+      }
+    ],
+    "user_ans": [
+      "B",
+      "E"
+    ],
+    "correct_ans": [
+      "C",
+      "F"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "For those of us who have been intoxicated by the power and potential of mathematics, the mystery isn't why that fascination developed but why it isn't __.",
+    "options": [
+      {
+        "A": "advantageous"
+      },
+      {
+        "B": "discounted"
+      },
+      {
+        "C": "prevalent"
+      },
+      {
+        "D": "undervalued"
+      },
+      {
+        "E": "celebrated"
+      },
+      {
+        "F": "widespread"
+      }
+    ],
+    "user_ans": [
+      "C",
+      "E"
+    ],
+    "correct_ans": [
+      "C",
+      "F"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "The (i)__ with which a statement is conveyed is frequently more important to the listener in determining the intended meaning than the actual words (ii)__. For example, a compliment, when delivered sarcastically, will be perceieved by the receiver as fairly insulting.",
+    "options": [
+      {
+        "A": "infection"
+      },
+      {
+        "B": "pitch"
+      },
+      {
+        "C": "accuracy"
+      },
+      {
+        "D": "implied"
+      },
+      {
+        "E": "repudiated"
+      },
+      {
+        "F": "utilized"
+      }
+    ],
+    "user_ans": [
+      "B",
+      "D"
+    ],
+    "correct_ans": [
+      "B",
+      "D"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "Although pirating software, such as borrowing a friend's copy of an installation CD or downloading software from unapproved sources is (i)__, many people continue to do so (ii)__, almost as if they were unaware of the potential consequences if they were caught.",
+    "options": [
+      {
+        "A": "uncommon"
+      },
+      {
+        "B": "illegal"
+      },
+      {
+        "C": "difficult"
+      },
+      {
+        "D": "savagely"
+      },
+      {
+        "E": "sensibly"
+      },
+      {
+        "F": "unabashedly"
+      }
+    ],
+    "user_ans": [
+      "B",
+      "E"
+    ],
+    "correct_ans": [
+      "B",
+      "F"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Several cultures throughout the world and amny informal subcultures within the United States (i)__ the Winter Solstice, the (ii)__ day of the year, as a time to welcome back the lengthening of each day. ",
+    "options": [
+      {
+        "A": "condemn"
+      },
+      {
+        "B": "burke"
+      },
+      {
+        "C": "fete"
+      },
+      {
+        "D": "lengthiest"
+      },
+      {
+        "E": "shortest"
+      },
+      {
+        "F": "coldest"
+      }
+    ],
+    "user_ans": [
+      "C",
+      "E"
+    ],
+    "correct_ans": [
+      "C",
+      "E"
+    ]
+  }
+]
+}

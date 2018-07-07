@@ -13,6 +13,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { FavListComponent } from './components/fav-list/fav-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RegisterComponent } from './auth/register/register.component';
     HeaderComponent,
     QuestionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FavListComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ from server import create_app, db, BLACKLIST
 from server.resources.user_resource import UserRegister, UserLogin, TokenRefresh, UserLogout
 from server.resources.question_resource import Question, QuestionList
 from server.resources.answer_resource import Answer
+from server.resources.subscribe_resource import (Subscribe, Unsubscribe, Myfav)
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from flask import Flask
@@ -78,6 +79,9 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(TokenRefresh, '/refresh')
 api.add_resource(UserLogout, '/logout')
+api.add_resource(Myfav, '/myfav', endpoint = 'get')
+api.add_resource(Subscribe, '/subscribe', endpoint = 'subscribe')
+api.add_resource(Unsubscribe, '/unsubscribe', endpoint = 'unsubscribe')
 
 if __name__ == "__main__":
     with flask_app.app_context():

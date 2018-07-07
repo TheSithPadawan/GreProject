@@ -39,4 +39,8 @@ class QuestionModel(db.Model):
     def get_question_by_id(cls, id_):
         return cls.query.filter_by(id=id_).first()
 
+    @classmethod
+    def get_question_by_list(cls, lst):
+        return cls.query.filter(cls.id.in_(lst)).all()
+
 

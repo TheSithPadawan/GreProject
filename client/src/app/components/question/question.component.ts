@@ -1,9 +1,9 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { QuestionService } from '../../services/question.service';
-import {AuthenticationService} from '../../services/authentication.service';
-import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-question',
@@ -11,22 +11,19 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./question.component.css']
 })
 
-@Injectable()
-
 export class QuestionComponent implements OnInit {
   data = {
     id: -1,
     question: '',
     options: [],
-    token: -1
   };
   
-  constructor(private question: QuestionService, private router: Router, private http: HttpClient) { }
+  
+  constructor(private question: QuestionService, private auth: AuthenticationService, public router: Router, private http: HttpClient) { }
   
   usr_ans1 = '';
   usr_ans2 = '';
   status = '';
-  
   ans = {
     'answer1': 'something',
     'answer2': 'something'
@@ -67,12 +64,11 @@ export class QuestionComponent implements OnInit {
       () => this.checkAns()
     );
   }
-  
   onSubmit(question_id) {
     this.getAns(question_id);
     this.submitted = true;
   }
-
+  
   checkAns() {
     if (this.usr_ans1 === this.ans.answer1 && this.usr_ans2 === this.ans.answer2) {
       this.status = 'correct answer';
@@ -81,54 +77,25 @@ export class QuestionComponent implements OnInit {
     }
   }
   
-  private tokenKey:string = 'app_token';
-  
-//  private store(content:Object) {
-//      localStorage.setItem(this.tokenKey, JSON.stringify(content));
-//  }
-
-  private retrieve() {
-      let storedToken:string = localStorage.getItem(this.tokenKey);
-      if(!storedToken){
-        this.router.navigate(['/login'], { queryParams: { returnUrl: 'http://127.0.0.1:5000/login' }});
-      }
-      return storedToken;
+  getToken(question_id, token_id){
+    if(token_id !== null){
+      return this.http.post('http://localhost:4200/fav_list', {question_id: question_id, token_id: token_id})
+        .pipe(map((res:any) => {
+          localStorage.setItem('fav_list', JSON.stringify({question_id: question_id, token_id: token_id}));
+      }));
+    }else{
+      this.ngOnInit2();
+    }
   }
-
-//  public generateNewToken() {
-//      let token:string = '...';//custom token generation;
-//      let currentTime:number = (new Date()).getTime() + ttl;
-//      this.store({ttl: currentTime, token});
-//  }
-
-  public retrieveToken() {
-      let currentTime:number = (new Date()).getTime(), token = null;
-      try {
-          let storedToken = JSON.parse(this.retrieve());
-          if(storedToken.ttl < currentTime) throw 'invalid token found';
-          token = storedToken.token;
-      }
-      catch(err) {
-          console.error(err);
-      }
-      return token;
-  }   
-
-  onSubscribe(question_id, token) {
-    this.getAns(question_id);
-    this.retrieveToken();
+  
+  ngOnInit2() {
+    this.router.navigate(['./login']);
+  }
+  
+  onSubscribe(question_id, token_id){
+    this.getToken(question_id, token_id);
     this.submitted = true;
   }
-  
-  subscribe(question_id: string, token: string) {
-    return this.http.post('http://127.0.0.1:5000/fav_list', {question_id: question_id, token: token})
-      .pipe(map((res:any) => {
-        // login successful if there's a jwt token in the response
-        if (res && res.access_token) {
-          // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({question_id: question_id, token: res.access_token}));
-        }
-    }));
 }
 
 export interface Answer {

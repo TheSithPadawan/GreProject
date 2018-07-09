@@ -17,10 +17,7 @@ export class QuestionComponent implements OnInit {
     question: '',
     options: [],
   };
-  
-  
   constructor(private question: QuestionService, private auth: AuthenticationService, public router: Router, private http: HttpClient) { }
-  
   usr_ans1 = '';
   usr_ans2 = '';
   status = '';
@@ -68,7 +65,7 @@ export class QuestionComponent implements OnInit {
     this.getAns(question_id);
     this.submitted = true;
   }
-  
+
   checkAns() {
     if (this.usr_ans1 === this.ans.answer1 && this.usr_ans2 === this.ans.answer2) {
       this.status = 'correct answer';
@@ -76,25 +73,17 @@ export class QuestionComponent implements OnInit {
       this.status = 'incorrect answer';
     }
   }
-  
-  getToken(question_id, token_id){
-    if(token_id !== null){
-      return this.http.post('http://localhost:4200/fav_list', {question_id: question_id, token_id: token_id})
-        .pipe(map((res:any) => {
-          localStorage.setItem('fav_list', JSON.stringify({question_id: question_id, token_id: token_id}));
-      }));
-    }else{
-      this.ngOnInit2();
+  onSubscribe(question_id) {
+    const token = this.auth.currentToken();
+    if (token === null) {
+      this.router.navigate(['./login']);
+    } else {
+      console.log(token);
+      this.question.subscribeQuestion(question_id).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
     }
-  }
-  
-  ngOnInit2() {
-    this.router.navigate(['./login']);
-  }
-  
-  onSubscribe(question_id, token_id){
-    this.getToken(question_id, token_id);
-    this.submitted = true;
   }
 }
 

@@ -44,18 +44,18 @@ export class AuthenticationService {
   }
 
   public get currentUserName(): object {
-    if(localStorage.getItem('currentUser') !== null) {
+    if (localStorage.getItem('currentUser') !== null) {
       let data = JSON.parse(localStorage.getItem('currentUser'));
       return data;
     }
   }
-  
-  //return token
-  public get currentToken(): object {
+
+  // return token
+  currentToken() {
     if(localStorage.getItem('currentUser') !== null) {
-      let data = JSON.parse(localStorage.getItem('currentUser'));
+      const data = JSON.parse(localStorage.getItem('currentUser'));
       return data.token;
-    }else{
+    } else {
       return null;
     }
   }

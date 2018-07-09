@@ -9,8 +9,6 @@ import {AuthenticationService} from './authentication.service';
   providedIn: 'root'
 })
 export class QuestionService {
-  subscribeURL = 'http://127.0.0.1:5000/subscribe/';
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -29,6 +27,9 @@ export class QuestionService {
   }
 
   subscribeQuestion(id) {
-    return this.http.post('http://127.0.0.1:5200', {'question_id': id});
+    return this.http.post('http://127.0.0.1:5000/subscribe', {'questionID': id}, this.httpOptions);
+  }
+  unsubscribeQuestion(id){
+    return this.http.post('http://127.0.0.1:5000/unsubscribe', {'questionID': id}, this.httpOptions);
   }
 }

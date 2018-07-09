@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 from server.models.subscribe import SubscribeModel
 from server.models.question import QuestionModel
-from flask_jwt_extended import jwt_required                        
+from flask_jwt_extended import jwt_required, get_jwt_identity,get_raw_jwt
 from server import db
 
 parser = reqparse.RequestParser()
@@ -19,7 +19,7 @@ class Myfav(Resource):
 
 
 class Subscribe(Resource):
-
+    @jwt_required
     def post(self):
         current_user = "1"
         args = parser.parse_args()

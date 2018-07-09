@@ -78,8 +78,18 @@ export class QuestionComponent implements OnInit {
     if (token === null) {
       this.router.navigate(['./login']);
     } else {
-      console.log(token);
       this.question.subscribeQuestion(question_id).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+    }
+  }
+  onUnSubscribe(question_id) {
+    const token = this.auth.currentToken();
+    if (token === null) {
+      this.router.navigate(['./login']);
+    } else {
+      this.question.unsubscribeQuestion(question_id).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );

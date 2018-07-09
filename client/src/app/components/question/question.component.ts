@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { QuestionService } from '../../services/question.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-question',
@@ -11,9 +15,9 @@ export class QuestionComponent implements OnInit {
   data = {
     id: -1,
     question: '',
-    options: []
+    options: [],
   };
-  constructor(private question: QuestionService) { }
+  constructor(private question: QuestionService, private auth: AuthenticationService, public router: Router, private http: HttpClient) { }
   usr_ans1 = '';
   usr_ans2 = '';
   status = '';
@@ -61,11 +65,24 @@ export class QuestionComponent implements OnInit {
     this.getAns(question_id);
     this.submitted = true;
   }
+
   checkAns() {
     if (this.usr_ans1 === this.ans.answer1 && this.usr_ans2 === this.ans.answer2) {
       this.status = 'correct answer';
     } else {
       this.status = 'incorrect answer';
+    }
+  }
+  onSubscribe(question_id) {
+    const token = this.auth.currentToken();
+    if (token === null) {
+      this.router.navigate(['./login']);
+    } else {
+      console.log(token);
+      this.question.subscribeQuestion(question_id).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
     }
   }
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <h4> {{data.id}}. {{data.question}}</h4>
-  <form #f="ngForm">    
+  <form #f="ngForm">
     <table style="width:95%">
       <tr>
         <td>
@@ -14,7 +14,7 @@
           </div>
         </td>
       </tr>
-      
+
       <tr>
         <td>
           <div *ngFor="let option of data.options | slice: 1:2">
@@ -27,7 +27,7 @@
           </div>
         </td>
       </tr>
-      
+
       <tr>
         <td>
           <div *ngFor="let option of data.options | slice: 2:3">
@@ -39,11 +39,12 @@
             <input type="radio" name="group2" [value]="option.label" [(ngModel)]="usr_ans2">&nbsp;{{option.label}}. {{option.content}}
           </div>
         </td>
-      </tr> 
+      </tr>
     </table>
-    
+
     <div>
       <button class="btn btn-primary" type="submit" (click)="onSubmit(data.id)"> Submit </button>
+      <button class="btn btn-primary" type="submit" (click)="onSubscribe(data.id)"> Favorite </button>
     </div>
   </form>
   <p>{{status}}</p>

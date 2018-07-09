@@ -1,9 +1,4 @@
-.navbar-brand{
-  font-weight: bold;
-}
-
 .nav-link{
-  font-weight: bold;
   font-size: 1.25rem;
 }
 
@@ -13,4 +8,13 @@
 
 .navbar-light .navbar-nav .active>.nav-link{
   color: #007bff;
+}
+
+.nav-item active{
+  margin: 10px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .8rem;
+    padding-left: .8rem;
 }

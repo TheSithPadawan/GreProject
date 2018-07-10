@@ -1,21 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from './authentication.service';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
-
-  constructor(private http: HttpClient) {
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': <string> this.auth.currentToken(),
+    })
+  };
+  constructor(private http: HttpClient, private auth: AuthenticationService) {
   }
 
   getOneQuestion() {
     return this.http.get('http://127.0.0.1:5000/one_question');
   }
+
   getAnswer(id) {
     return this.http.get('http://127.0.0.1:5000/answer/' + id);
   }
-  submitQuestion(id, ans1, ans2) {
+
+  submitAnswer(id, ans1, ans2) {
+    return this.http.post('http://127.0.0.1:5000/answer/' + id, {'usr_ans1': ans1, 'usr_ans2': ans2}, this.httpOptions);
+  }
   	
+  subscribeQuestion(id) {
+    return this.http.post('http://127.0.0.1:5000/subscribe', {'questionID': id}, this.httpOptions);
+  }
+  unsubscribeQuestion(id){
+    return this.http.post('http://127.0.0.1:5000/unsubscribe', {'questionID': id}, this.httpOptions);
   }
 }

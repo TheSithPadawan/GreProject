@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../services/question.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-question',
@@ -57,10 +58,25 @@ export class QuestionComponent implements OnInit {
       () => this.checkAns()
     );
   }
+
   onSubmit(question_id) {
     this.getAns(question_id);
     this.submitted = true;
+    this.subAns(question_id, this.ans.answer1, this.ans.answer2);
   }
+
+  subAns(id, ans1, ans2) {
+    const token = this.auth.currentToken();
+    if (token == null) {
+      
+    }
+    if (this.authenticationService.loggedIn) {
+      
+    } else {
+
+    }
+  }
+
   checkAns() {
     if (this.usr_ans1 === this.ans.answer1 && this.usr_ans2 === this.ans.answer2) {
       this.status = 'correct answer';

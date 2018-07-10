@@ -15,4 +15,7 @@ export class QuestionService {
   getAnswer(id) {
     return this.http.get('http://127.0.0.1:5000/answer/' + id);
   }
+  submitQuestion(id, ans1, ans2) {
+  	
+  }
 }

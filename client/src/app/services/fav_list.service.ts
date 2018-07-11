@@ -10,6 +10,7 @@ export class FavListService {
   constructor(private http: HttpClient) {
   }
   getFavList() {
+    // todo: change this to the actual endpoints
     return this.http.get('http://localhost:3000/questions');
   }
 }

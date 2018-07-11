@@ -10,6 +10,6 @@ export class FavListService {
   constructor(private http: HttpClient) {
   }
   getFavList() {
-    return this.http.get('http://localhost:4000/questions');
+    return this.http.get('http://localhost:3000/questions');
   }
 }

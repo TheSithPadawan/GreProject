@@ -26,10 +26,6 @@ export class QuestionService {
     return this.http.get('http://127.0.0.1:5000/answer/' + id);
   }
 
-  submitAnswer(id, ans1, ans2) {
-    return this.http.post('http://127.0.0.1:5000/answer/' + id, {'usr_ans1': ans1, 'usr_ans2': ans2}, this.httpOptions);
-  }
-  	
   subscribeQuestion(id) {
     return this.http.post('http://127.0.0.1:5000/subscribe', {'questionID': id}, this.httpOptions);
   }

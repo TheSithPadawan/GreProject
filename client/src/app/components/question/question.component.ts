@@ -56,17 +56,8 @@ export class QuestionComponent implements OnInit {
       () => this.checkAns()
     );
   }
-
   onSubmit(question_id) {
     this.getAns(question_id);
-    this.subAns(question_id, this.ans.answer1, this.ans.answer2);
-  }
-
-  subAns(id, ans1, ans2) {
-    this.question.submitAnswer(id, ans1, ans2).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-    );
     this.data.submitted = true;
   }
 

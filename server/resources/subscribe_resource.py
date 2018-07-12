@@ -8,9 +8,9 @@ parser = reqparse.RequestParser()
 parser.add_argument('questionID')
 
 class Myfav(Resource):
-
+    @jwt_required
     def get(self):
-        current_user = "1"
+        current_user = str(get_jwt_identity())
         subscribe_model_list = SubscribeModel.find_by_username(current_user)
         question_id_list = []
         for model in subscribe_model_list :
@@ -21,15 +21,15 @@ class Myfav(Resource):
 class Subscribe(Resource):
     @jwt_required
     def post(self):
-        current_user = "1"
+        current_user = str(get_jwt_identity())
         args = parser.parse_args()
         subsrcibe = SubscribeModel(current_user, args['questionID'])
         subsrcibe.save_to_db()
 
 class Unsubscribe(Resource):
-
+    @jwt_required
     def post(self):
-        current_user = "1"
+        current_user = str(get_jwt_identity())
         args = parser.parse_args()
         subsrcibe = SubscribeModel(current_user, args['questionID'])
         subsrcibe.delete_from_db()

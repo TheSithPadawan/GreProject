@@ -14,6 +14,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FavListComponent } from './components/fav-list/fav-list.component';
+import { ListItemComponent } from './components/fav-list/list-item/list-item.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FavListComponent } from './components/fav-list/fav-list.component';
     LoginComponent,
     RegisterComponent,
     FavListComponent,
+    ListItemComponent,
   ],
   imports: [
     BrowserModule,

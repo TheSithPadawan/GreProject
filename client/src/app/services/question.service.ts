@@ -33,7 +33,12 @@ export class QuestionService {
   subscribeQuestion(id) {
     return this.http.post('http://127.0.0.1:5000/subscribe', {'questionID': id}, this.httpOptions);
   }
+
   unsubscribeQuestion(id){
     return this.http.post('http://127.0.0.1:5000/unsubscribe', {'questionID': id}, this.httpOptions);
+  }
+
+  getQuestionById(id){
+    return this.http.get('http://127.0.0.1:5000/one_question/' + id);
   }
 }

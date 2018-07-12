@@ -4,6 +4,7 @@ import { QuestionComponent } from '../components/question/question.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { RegisterComponent } from '../auth/register/register.component';
 import { FavListComponent } from '../components/fav-list/fav-list.component';
+import {ListItemComponent} from '../components/fav-list/list-item/list-item.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'fav_list',
     component: FavListComponent
+  },
+  {
+    path: 'question/:id',
+    component: ListItemComponent
   }
 ];
 

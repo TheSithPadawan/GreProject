@@ -16,6 +16,7 @@ export class FavListComponent implements OnInit {
   ngOnInit() {
     this.favList.getFavList().subscribe(
       (response: string[]) => {
+        console.log(response);
         for (let i = 0; i < response.length; i++){
           this.questions.push(response[i]);
         }

@@ -44,8 +44,6 @@ export class QuestionComponent implements OnInit {
   getAns(id) {
     this.question.getAnswer(id).subscribe(
       (response: Answer) => {
-        // this.ans.answer1 = response['answer1'];
-        // this.ans.answer2 = response['answer2'];
         this.data.ans = {
           'answer1': response['answer1'],
           'answer2': response['answer2']
@@ -59,7 +57,7 @@ export class QuestionComponent implements OnInit {
 
   onSubmit(question_id) {
     this.getAns(question_id);
-    this.subAns(question_id, this.ans.answer1, this.ans.answer2);
+    this.subAns(question_id, this.data.usr_ans1, this.data.usr_ans2);
   }
 
   subAns(id, ans1, ans2) {

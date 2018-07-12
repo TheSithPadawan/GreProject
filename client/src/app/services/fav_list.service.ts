@@ -11,6 +11,6 @@ export class FavListService {
   }
   getFavList() {
     // todo: change this to the actual endpoints
-    return this.http.get('http://localhost:3000/questions');
+    return this.http.get('http://localhost:5000/myfav');
   }
 }

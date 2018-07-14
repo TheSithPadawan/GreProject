@@ -22,6 +22,7 @@
             &nbsp;&nbsp;
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" routerLink="register" *ngIf="auth.loggedIn">Register</button>
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" routerLink="fav_list" *ngIf="!auth.loggedIn" >Favorites</button>
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="button" routerLink="myHistory" *ngIf="!auth.loggedIn" >History</button>
         </ul>
     </div>
 </nav>

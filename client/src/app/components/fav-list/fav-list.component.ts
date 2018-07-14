@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FavListService} from '../../services/fav_list.service';
-import { QuestionService} from '../../services/question.service';
-import { Question } from '../question/question.component';
 
 @Component({
   selector: 'app-fav-list',
@@ -10,7 +8,7 @@ import { Question } from '../question/question.component';
 })
 export class FavListComponent implements OnInit {
   questions: string[] = [];
-  constructor(private favList: FavListService, private question: QuestionService) { }
+  constructor(private favList: FavListService) { }
 
   // subscribe to Observable and store in the list items
   ngOnInit() {

@@ -11,11 +11,12 @@ class Myfav(Resource):
     @jwt_required
     def get(self):
         current_user = str(get_jwt_identity())
+        print ("current user id " + current_user)
         subscribe_model_list = SubscribeModel.find_by_username(current_user)
         question_id_list = []
         for model in subscribe_model_list :
             question_id_list.append(model.question_id)
-        # print(question_id_list)
+        print (question_id_list)
         return question_id_list
 
 

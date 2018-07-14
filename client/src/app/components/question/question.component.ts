@@ -1,7 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { QuestionService } from '../../services/question.service';
 import { AuthenticationService } from '../../services/authentication.service';
 

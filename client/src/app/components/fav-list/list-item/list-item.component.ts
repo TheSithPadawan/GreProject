@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService} from '../../../services/question.service';
 import {Answer, Question} from '../../question/question.component';
-import { QuestionComponent } from '../../question/question.component';
 
 @Component({
   selector: 'app-list-item',
@@ -10,6 +9,7 @@ import { QuestionComponent } from '../../question/question.component';
   styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent implements OnInit {
+  @Input()
   id: number;
   data: Question;
   constructor(private route: ActivatedRoute, private question: QuestionService) {
@@ -48,8 +48,6 @@ export class ListItemComponent implements OnInit {
   getAns(id) {
     this.question.getAnswer(id).subscribe(
       (response: Answer) => {
-        // this.ans.answer1 = response['answer1'];
-        // this.ans.answer2 = response['answer2'];
         this.data.ans = {
           'answer1': response['answer1'],
           'answer2': response['answer2']

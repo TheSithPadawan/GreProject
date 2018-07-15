@@ -1,5 +1,5 @@
 /*
-table.table{
+table.table table-bordered{
   width: 50%;
   margin-left:auto; 
   margin-right:auto;
@@ -31,4 +31,12 @@ table, th, td {
 th, td {
   padding: 15px;
   text-align: left;
+}
+
+td.correct{
+  color: green;
+}
+
+td.incorrect{
+  color: red;
 }

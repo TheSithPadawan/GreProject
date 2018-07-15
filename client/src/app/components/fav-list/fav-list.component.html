@@ -1,7 +1,32 @@
+<!--
 <div class="container">
-  <div class="container" *ngFor="let item of questions">
-    <!--<button class="btn btn-primary" (click)="onClick(item)"> Practice </button>-->
-    <!-- need to use relative path, otherwise will not work -->
-    <a [routerLink]="['/question', item]">{{item}}</a>
-  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Favorites List</th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+      <div class="container" *ngFor="let item of questions ">
+          <a [routerLink]="['/question', item]">Question ID: {{item}}</a>
+      </div>
+    </tbody>
+  </table>
+</div>
+
+-->
+
+
+
+<div class="container">
+  <table style="width:70%">
+    <tr>
+      <th>Favorites List</th>
+    </tr>
+    <tr *ngFor="let item of questions">
+      <td> <a [routerLink]="['/question', item]">Question ID: {{item}}</a></td>
+    </tr>
+  </table>
 </div>

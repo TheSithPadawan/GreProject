@@ -15,13 +15,33 @@
             </li>
         </ul>
         <ul class="form-inline my-2 my-lg-0">
-            <span *ngIf="!auth.loggedIn">{{ auth.currentUserName.username }}</span>&nbsp;&nbsp;
+          <div class="dropdown" *ngIf="!auth.loggedIn">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span *ngIf="!auth.loggedIn">{{ auth.currentUserName.username }}</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" routerLink="fav_list" *ngIf="!auth.loggedIn" href="#">Favorites</a>
+              <a class="dropdown-item" routerLink="myHistory" *ngIf="!auth.loggedIn" href="#">History</a>
+              <a class="dropdown-item" *ngIf="!auth.loggedIn"
+                routerLink="/" (click)="logout()" href="#">Logout</a>
+            </div>
+          </div>
+          
+<!--            <span *ngIf="!auth.loggedIn">{{ auth.currentUserName.username }}</span>&nbsp;&nbsp;-->
+<!--
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" *ngIf="!auth.loggedIn"
                     routerLink="/" (click)="logout()">Logout</button>
+-->   
+            &nbsp;&nbsp;
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" routerLink="login" *ngIf="auth.loggedIn">Login</button>
             &nbsp;&nbsp;
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" routerLink="register" *ngIf="auth.loggedIn">Register</button>
+            &nbsp;&nbsp;
+<!--
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" routerLink="fav_list" *ngIf="!auth.loggedIn" >Favorites</button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="button" routerLink="myHistory" *ngIf="!auth.loggedIn" >History</button>
+-->
         </ul>
     </div>
 </nav>

@@ -11,7 +11,7 @@ class SubscribeModel(db.Model):
         self.question_id = question_id
 
     def save_to_db(self):
-        db.session.add(self)
+        db.session.merge(self)
         db.session.commit()
 
     @classmethod
@@ -20,5 +20,6 @@ class SubscribeModel(db.Model):
 
     def delete_from_db(self):
         obj = SubscribeModel.query.filter_by(user_id=self.user_id, question_id=self.question_id).first()
-        db.session.delete(obj)
-        db.session.commit()
+        if obj is not None:
+            db.session.delete(obj)
+            db.session.commit()

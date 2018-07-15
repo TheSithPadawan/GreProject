@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      time submitted
+    </div>
+    <div class="col-sm">
+      question id
+    </div>
+    <div class="col-sm">status
+    </div>
+  </div>
+  <div class="row" *ngFor="let item of historyItems">
+    <div class="col-sm">
+      {{item.time}}
+    </div>
+    <div class="col-sm">
+      <a [routerLink]="['/myAns', item.question_id]">{{item.question_id}}</a>
+    </div>
+    <div class="col-sm">
+      {{item.status}}
+    </div>
+  </div>
+</div>

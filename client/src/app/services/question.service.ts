@@ -4,7 +4,6 @@ import { HttpHeaders} from '@angular/common/http';
 import {AuthenticationService} from './authentication.service';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +26,7 @@ export class QuestionService {
   }
 
   subscribeQuestion(id) {
+    //console.log("Subscribed!");
     return this.http.post('http://127.0.0.1:5000/subscribe', {'questionID': id}, this.httpOptions);
   }
   unsubscribeQuestion(id){

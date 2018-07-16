@@ -3,7 +3,7 @@
   margin-top:50px;
   border-style: solid;
   border-width: 2px;
-  border-color: black;
+  border-color: #dee2e6;
 }
 
 #one_question {
@@ -14,7 +14,7 @@
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid #dee2e6;
   border-collapse: collapse;
   margin: auto;
   margin-top: 30px;

@@ -1,0 +1,14 @@
+<div class="container">
+  <table style="width:80%">
+    <tr>
+      <th>Time Submitted</th>
+      <th>Question ID</th>
+      <th>Status</th>
+    </tr>
+    <tr *ngFor="let item of historyItems">
+      <td>{{item.time}}</td>
+      <td> <a [routerLink]="['/myAns', item.question_id]">{{item.question_id}}</a></td>
+      <td class="{{item.status}}"><strong>{{item.status}}</strong></td>
+    </tr>
+  </table>
+</div>

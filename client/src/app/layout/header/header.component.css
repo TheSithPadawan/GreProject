@@ -1,3 +1,5 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 .nav-link{
   font-size: 1.25rem;
 }
@@ -17,4 +19,52 @@
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: .8rem;
     padding-left: .8rem;
+}
+
+.dropdown-menu{
+  min-width: 8rem;
+}
+
+.dropdown-item{
+  color: #007bff;
+}
+
+.dropdown-item[_ngcontent-c1] {
+    color: #007bff;
+}
+
+.btn btn-secondary dropdown-toggle{
+  color: #007bff;
+}
+
+.show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgb(117, 167, 229);
+}
+
+.btn-secondary:focus {
+    box-shadow: 0 0 0 0.2rem rgb(117, 167, 229);
+}
+
+.btn-secondary[_ngcontent-c1]:not(:disabled):not(.disabled).active, .btn-secondary[_ngcontent-c1]:not(:disabled):not(.disabled):active, .show[_ngcontent-c1] > .btn-secondary.dropdown-toggle[_ngcontent-c1] {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.show>.btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-secondary[_ngcontent-c1] {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.show[_ngcontent-c1] > .btn-secondary.dropdown-toggle[_ngcontent-c1] {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }

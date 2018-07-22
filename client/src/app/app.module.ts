@@ -15,6 +15,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FavListComponent } from './components/fav-list/fav-list.component';
 import { ListItemComponent } from './components/fav-list/list-item/list-item.component';
+import { HistoryComponent } from './components/history/history.component';
+import { HistoryItemComponent } from './components/history/history-item/history-item.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ListItemComponent } from './components/fav-list/list-item/list-item.com
     RegisterComponent,
     FavListComponent,
     ListItemComponent,
+    HistoryComponent,
+    HistoryItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { QuestionService } from '../../services/question.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -44,8 +42,6 @@ export class QuestionComponent implements OnInit {
   getAns(id) {
     this.question.getAnswer(id).subscribe(
       (response: Answer) => {
-        // this.ans.answer1 = response['answer1'];
-        // this.ans.answer2 = response['answer2'];
         this.data.ans = {
           'answer1': response['answer1'],
           'answer2': response['answer2']
@@ -58,6 +54,15 @@ export class QuestionComponent implements OnInit {
   }
   onSubmit(question_id) {
     this.getAns(question_id);
+    this.data.submitted = true;
+    this.subAns(question_id, this.data.usr_ans1 this.data.usr_ans2);
+  }
+
+  subAns(id, ans1, ans2) {
+    this.question.submitAnswer(id, ans1, ans2).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+    );
     this.data.submitted = true;
   }
 

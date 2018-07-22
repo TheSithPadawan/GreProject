@@ -8,10 +8,10 @@ from server.utils.apputil import apputil
 
 
 class MyHistory(Resource):
-    # @jwt_required
+    @jwt_required
     def get(self):
-        # current_user = str(get_jwt_identity())
-        current_user = "1"
+        current_user = str(get_jwt_identity())
+        # current_user = "1"
         question_history_list = QuestionHistoryModel.find_by_username(current_user)
         res = []
         for question_history in question_history_list:
@@ -26,13 +26,13 @@ class MyHistory(Resource):
         return res
 
 class MyQuestionHistory(Resource):
-    # @jwt_required
+    @jwt_required
     def get(self, question_id_ = None):
         if question_id_ == None:
             return 404
 
-        # current_user = str(get_jwt_identity())
-        current_user = "1"
+        current_user = str(get_jwt_identity())
+        # current_user = "1"
         question_history_list = QuestionHistoryModel.find_by_username_question(current_user, str(question_id_))
         map = {}
         map["question_id"] = question_id_

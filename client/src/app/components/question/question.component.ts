@@ -55,7 +55,7 @@ export class QuestionComponent implements OnInit {
   onSubmit(question_id) {
     this.getAns(question_id);
     this.data.submitted = true;
-    this.subAns(question_id, this.data.usr_ans1 this.data.usr_ans2);
+    this.subAns(question_id, this.data.usr_ans1, this.data.usr_ans2);
   }
 
   subAns(id, ans1, ans2) {

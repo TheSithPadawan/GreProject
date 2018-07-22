@@ -1,4 +1,5 @@
 from server import db
+import datetime
 
 class QuestionHistoryModel(db.Model):
     __tablename__ = 'questionhistory'
@@ -6,15 +7,15 @@ class QuestionHistoryModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String(20))
     question_id = db.Column(db.String(20))
-    timestamp = db.Column(db.DateTime)
+    timestamp = db.Column(db.DateTime, server_default=db.text("sysdate"))
 
     def __init__(self, user_id, question_id):
         self.user_id = user_id
         self.question_id = question_id
 
     def save_to_db(self):
-        db.session.merge(self)
-        db.session.commit()
+        db.session.add(self)
+        db.session.flush()
         db.session.refresh(self)
         return self.id
 

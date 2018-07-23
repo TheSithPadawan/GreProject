@@ -7,6 +7,7 @@ import { FavListComponent } from '../components/fav-list/fav-list.component';
 import {ListItemComponent} from '../components/fav-list/list-item/list-item.component';
 import {HistoryComponent} from '../components/history/history.component';
 import {HistoryItemComponent} from '../components/history/history-item/history-item.component';
+import {NoteComponent} from '../components/note/note.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'myAns/:id',
     component: HistoryItemComponent
+  },
+  {
+    path: 'myNotes',
+    component: NoteComponent
   }
 ];
 

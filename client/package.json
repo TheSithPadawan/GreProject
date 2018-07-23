@@ -20,7 +20,6 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
-
     "@ng-bootstrap/ng-bootstrap": "^2.2.0",
     "@types/angular": "^1.6.48",
     "angular-oauth2-oidc": "^4.0.2",

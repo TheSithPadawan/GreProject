@@ -17,6 +17,9 @@ import { FavListComponent } from './components/fav-list/fav-list.component';
 import { ListItemComponent } from './components/fav-list/list-item/list-item.component';
 import { HistoryComponent } from './components/history/history.component';
 import { HistoryItemComponent } from './components/history/history-item/history-item.component';
+import { NoteComponent } from './components/note/note.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { HistoryItemComponent } from './components/history/history-item/history-
     ListItemComponent,
     HistoryComponent,
     HistoryItemComponent,
+    NoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { HistoryItemComponent } from './components/history/history-item/history-
     HttpClientModule,
     ReactiveFormsModule,
     OAuthModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

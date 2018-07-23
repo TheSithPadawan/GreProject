@@ -22,4 +22,5 @@ export class HistoryService {
     // todo: change this to the actual endpoints
     return this.http.get('http://localhost:4000/answer/' + id, this.httpOptions);
   }
+
 }

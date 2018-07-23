@@ -1,0 +1,56 @@
+{
+  "note":[{
+      "id": 1,
+      "question": "Many fashions that were considered daring in their time have been so widely worn and imitated that the (i)__ style is no longer seen as (ii)__.",
+      "options": [
+        {
+          "A": "proposed"
+        },
+        {
+          "B": "original"
+        },
+        {
+          "C": "revealing"
+        },
+        {
+          "D": "outlandish"
+        },
+        {
+          "E": "commonplace"
+        },
+        {
+          "F": "copied"
+        }
+      ],
+      "user answer": ["C", "D"],
+      "correct answer": ["B", "D"],
+      "notes": "Outlandish means looking or sounding bizarre or unfamiliar. It is the opposite of commonplace."
+    },
+    {
+      "id": 2,
+      "question": "The Johnsons were not known for their (i)__; at the very least, none of the family members were fearful of (ii)__, of appearing or acting differently from other people.",
+      "options": [
+        {
+          "A": "candor"
+        },
+        {
+          "B": "vulgarity"
+        },
+        {
+          "C": "conformity"
+        },
+        {
+          "D": "pettiness"
+        },
+        {
+          "E": "eccentricity"
+        },
+        {
+          "F": "complaisance"
+        }
+      ],
+      "user answer": ["C", "E"],
+      "correct answer": ["C", "E"],
+      "notes": "This is an easy question."
+    }]
+}

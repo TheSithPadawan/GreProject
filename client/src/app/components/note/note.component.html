@@ -1,0 +1,29 @@
+<ngb-accordion #acc="ngbAccordion" *ngFor="let note of allNotes">
+  <ngb-panel title={{note.question.id}}>
+    <ng-template ngbPanelContent>
+      <ngb-tabset>
+        <ngb-tab title = "Question">
+          <ng-template ngbTabContent>
+            {{note.question.id}}. {{note.question.question}}
+            <div class="container" *ngFor="let option of note.question.options">
+              {{option.label}}. {{option.content}}
+            </div>
+            My Answer:
+            <div class="container-fluid">{{note.question.usr_ans1}}, {{note.question.usr_ans2}}</div>
+            Correct Answer:
+            <div class="container-fluid">{{note.answer.answer1}}, {{note.answer.answer2}}</div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title = "Notes">
+          <ng-template ngbTabContent>
+            <div>{{note.notes}}</div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
+
+
+

@@ -16,11 +16,11 @@ export class HistoryService {
   }
   getUserHistory() {
     // todo: change this to the actual endpoints
-    return this.http.get('http://localhost:3000/history', this.httpOptions);
+    return this.http.get('http://localhost:5000/myhistory', this.httpOptions);
   }
   getUserAnsByID(id) {
     // todo: change this to the actual endpoints
-    return this.http.get('http://localhost:4000/answer/' + id, this.httpOptions);
+    return this.http.get('http://localhost:5000/myquestionhistory/' + id, this.httpOptions);
   }
 
 }

@@ -17,42 +17,19 @@ The first time you run the program, it will create two tables in the gre_db: que
 pip install -r requirements.txt
 ```
 ## Front end dev
+updates:
+Need to install angular bootstrap dependency:
 ```
-use the following end points to get questions from database
-GET http://127.0.0.1:5000/one_question to get one random question in JSON format
-get one question by id
-GET http://127.0.0.1:5000/one_question/<id>
-get all questions in database
-GET http://127.0.0.1:5000/questions to get all questions in database in JSON format
-get answer to a specific question
-GET http://127.0.0.1:5000/answer/id replace id with question id to get the answer to a specific question
-post user answer
-POST http://127.0.0.1:5000/answer/id replace id with question id to post user answer to a specific question
-
-Use the following json format for the POST request:
-{
-"usr_ans1": "blah",
-"usr_ans2": blah"
-}
+npm install --save @ng-bootstrap/ng-bootstrap
 ```
-Note that please don't use the routes for a RESTful API. 
-Start the server by:
+Start the backend server by:
 ```
 $ python app.py
 ```
-You can also test out all the endpoints by installing postman plug-in and use the following collection link to get all
-the tests for endpoints:
-https://www.getpostman.com/collections/dc44c9a63e40b5982dd8
-## Starting the front end server
+Using json-server to test Notes Functionality
+cd to the client/src folder
 ```
-$ ng serve
+$ json-server --watch db/notes.json --port 8152
 ```
-testing the favorite list feature using a FAKE REST API:
-install a json server using npm
-```
-$ npm install -g json-server
-```
-start the server in another terminal and use the data/db.json as an example
-```
-json-server --watch data/db.json --port 4000
-```
+
+

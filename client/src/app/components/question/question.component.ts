@@ -2,7 +2,6 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionService } from '../../services/question.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { NoteService } from '../../services/note.service';
 
 @Component({
   selector: 'app-question',
@@ -12,12 +11,9 @@ import { NoteService } from '../../services/note.service';
 
 export class QuestionComponent implements OnInit {
   data: Question;
-  dataNote: Notes;
-  constructor(private question: QuestionService, private note: NoteService, private auth: AuthenticationService, public router: Router) {
+  constructor(private question: QuestionService, private auth: AuthenticationService, public router: Router) {
     this.data = new Question();
-    this.dataNote = new Notes();
   }
-  
   ngOnInit() {
     this.question.getOneQuestion().subscribe(
         (response: Response) => {
@@ -42,6 +38,7 @@ export class QuestionComponent implements OnInit {
       () => this.data.submitted = false
     );
   }
+
   getAns(id) {
     this.question.getAnswer(id).subscribe(
       (response: Answer) => {
@@ -53,17 +50,6 @@ export class QuestionComponent implements OnInit {
     ,
       (error) => console.log(error),
       () => this.checkAns()
-    );
-  } 
-  // GET:getNotes
-  getNotes(id, auth) {
-    this.note.getNotes(id, auth).subscribe(
-      (response: Notes) => {
-        this.dataNote.content = response['content'];
-      }
-    ,
-      (error) => console.log(error),
-      () => this.data.submitted = false
     );
   }
   onSubmit(question_id) {
@@ -109,18 +95,6 @@ export class QuestionComponent implements OnInit {
       );
     }
   }
-  // POST: onSubmitNote
-  onSubmitNote(question_id) {
-    const token = this.auth.currentToken();
-    if (token === null) {
-      this.router.navigate(['./login']);
-    } else {
-      this.question.submitNote(question_id).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
-    }
-  }
 }
 
 export class Answer {
@@ -136,11 +110,5 @@ export class Question {
   usr_ans2: string;
   status: string;
   ans: object = {};
-  submitted: boolean;
-}
-
-export class Notes {
-  content: string;
-  auth: string;
   submitted: boolean;
 }

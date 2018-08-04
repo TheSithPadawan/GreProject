@@ -19,9 +19,8 @@ export class HistoryComponent implements OnInit {
         for (let i = 0; i < response.length; i++){
           const item = new HistoryItem();
           item.time = response[i]['time submitted'];
-          item.question_id = response[i]['question id'];
+          item.question_id = response[i]['question_id'];
           item.status = response[i]['status'];
-          this.map[+item.question_id] = item;
           this.historyItems.push(item);
         }
       },

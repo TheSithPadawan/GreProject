@@ -34,3 +34,13 @@ h1, h2, h3, h4, h5, h6 {
 .btn{
   margin: 8px;
 }
+
+.form-group{
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.second-button{
+  margin-bottom: 15px;
+}

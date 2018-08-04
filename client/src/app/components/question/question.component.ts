@@ -17,7 +17,7 @@ export class QuestionComponent implements OnInit {
     this.data = new Question();
     this.dataNote = new Notes();
   }
-  
+
   ngOnInit() {
     this.question.getOneQuestion().subscribe(
         (response: Response) => {
@@ -54,11 +54,11 @@ export class QuestionComponent implements OnInit {
       (error) => console.log(error),
       () => this.checkAns()
     );
-  } 
+  }
   // GET:getNotes
   getNotes(id, auth) {
     this.note.getNotes(id, auth).subscribe(
-      (response: Notes) => {
+      (response: Notes) => { //GET有问题
         this.dataNote.content = response['content'];
       }
     ,

@@ -13,7 +13,7 @@ import { NoteService } from '../../services/note.service';
 export class QuestionComponent implements OnInit {
   data: Question;
   dataNote: Notes;
-  constructor(private question: QuestionService, private note: NoteService, private auth: AuthenticationService, public router: Router) {
+  constructor(private question: QuestionService, private note: NoteService, public auth: AuthenticationService, public router: Router) {
     this.data = new Question();
     this.dataNote = new Notes();
   }
@@ -39,7 +39,14 @@ export class QuestionComponent implements OnInit {
           }
         },
       (error) => console.log(error),
-      () => this.data.submitted = false
+      () => {
+          this.data.submitted = false;
+          console.log('Current question ID = ' + this.data.id);
+          const token = this.auth.currentToken();
+           if (token != null) {
+             this.getNotes(this.data.id, this.auth);
+           }
+      }
     );
   }
   getAns(id) {
@@ -58,8 +65,8 @@ export class QuestionComponent implements OnInit {
   // GET:getNotes
   getNotes(id, auth) {
     this.note.getNotes(id, auth).subscribe(
-      (response: Notes) => { //GET有问题
-        this.dataNote.content = response['content'];
+      (response: Notes) => {
+        this.dataNote.content = response['note'];
       }
     ,
       (error) => console.log(error),
@@ -110,15 +117,16 @@ export class QuestionComponent implements OnInit {
     }
   }
   // POST: onSubmitNote
-  onSubmitNote(question_id) {
+  onSubmitNote(question_id, notes) {
     const token = this.auth.currentToken();
+    console.log("question id = "+ question_id);
     if (token === null) {
       this.router.navigate(['./login']);
     } else {
-      this.question.submitNote(question_id).subscribe(
+      this.question.submitNote(question_id, notes).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
-      );
+      )
     }
   }
 }

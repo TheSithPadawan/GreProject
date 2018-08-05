@@ -15,10 +15,10 @@ export class NoteService {
   constructor(private http: HttpClient, private auth: AuthenticationService) {
   }
   getUserNote(){
-      return this.http.get('http://localhost:8152/note', this.httpOptions);
+      return this.http.get('http://127.0.0.1:5000/note/all', this.httpOptions);
   }
   //GET NOTE
   getNotes(id, auth){
-    return this.http.get('http://127.0.0.1:5000/notes/' + id + auth);  
+    return this.http.get('http://127.0.0.1:5000/note/' + id, this.httpOptions);
   }
 }

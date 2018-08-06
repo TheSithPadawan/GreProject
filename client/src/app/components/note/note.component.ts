@@ -11,6 +11,7 @@ import {Answer} from '../question/question.component';
 export class NoteComponent implements OnInit {
   allNotes: Note[] = [];
   constructor(private note: NoteService) { }
+  editorEnabled = false;
 
   ngOnInit() {
     this.note.getUserNote().subscribe(
@@ -48,6 +49,28 @@ export class NoteComponent implements OnInit {
       (error) => console.log(error),
       () => console.log(this.allNotes)
     );
+  }
+
+  deleteNote(idx:number, $event, currNote) {
+    this.allNotes.splice(idx,1);
+    console.log('I am deleting');
+    $event.preventDefault();
+    this.note.delNote(currNote).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+    );
+  }
+
+  editNote() {
+    this.editorEnabled = true;
+  }
+
+  saveEdit() {
+
+  }
+
+  cancelEdit() {
+    this.editorEnabled = false;
   }
 }
 

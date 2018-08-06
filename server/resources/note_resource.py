@@ -60,7 +60,7 @@ class DeleteMyNote(Resource):
         args = parser.parse_args()
         note = NoteModel(current_user, str(args['questionID']), "")
         note.delete_from_db()
-        reutrn 200
+        return 200
 
 class AddMyNote(Resource):
     @jwt_required

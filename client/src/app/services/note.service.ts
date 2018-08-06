@@ -16,5 +16,9 @@ export class NoteService {
   }
   getUserNote(){
       return this.http.get('http://localhost:8152/note', this.httpOptions);
-   }
+  }
+
+  delNote(currNote) {
+    return this.http.post('http://localhost:8152/note/delete', {'questionID': currNote.question.id}, this.httpOptions);
+  }
 }

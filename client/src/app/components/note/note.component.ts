@@ -12,6 +12,7 @@ export class NoteComponent implements OnInit {
   allNotes: Note[] = [];
   constructor(private note: NoteService) { }
   editorEnabled = false;
+  editableNote = '';
 
   ngOnInit() {
     this.note.getUserNote().subscribe(
@@ -61,15 +62,21 @@ export class NoteComponent implements OnInit {
     );
   }
 
-  editNote() {
+  editNote(idx:number) {
     this.editorEnabled = true;
+    this.editableNote = this.allNotes[idx].notes;
   }
 
-  saveEdit() {
-
+  saveEdit(idx:number) {
+    this.allNotes[idx].notes = this.editableNote;
+    /*this.note.updateNote(this.allNotes[idx]).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+    );*/
+    this.cancelEdit(idx);
   }
 
-  cancelEdit() {
+  cancelEdit(idx:number) {
     this.editorEnabled = false;
   }
 }

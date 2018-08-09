@@ -23,13 +23,14 @@
           <ng-template ngbTabContent>
             <div *ngIf="!editorEnabled">
               <div>{{note.notes}}</div>
-              <button class="btn btn-primary" type="submit" (click)="editNote()">Edit</button>
+              <button class="btn btn-primary" type="submit" (click)="editNote(index)">Edit</button>
             </div>
+            
             <div *ngIf="editorEnabled">
               <input [(ngModel)]="note.notes">
-              <button class="btn btn-primary" type="submit" (click)="saveEdit()">Save</button>
+              <button class="btn btn-primary" type="submit" (click)="saveEdit(index)">Save</button>
               or
-              <button class="btn btn-primary" type="submit" (click)="cancelEdit()">Cancel</button>
+              <button class="btn btn-primary" type="submit" (click)="cancelEdit(index)">Cancel</button>
             </div>
           </ng-template>
         </ngb-tab>

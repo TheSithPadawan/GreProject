@@ -41,6 +41,11 @@ export class QuestionService {
     return this.http.post('http://127.0.0.1:5000/unsubscribe', {'questionID': id}, this.httpOptions);
   }
 
+  //POST NOTE
+  submitNote(id, notes) {
+    return this.http.post('http://127.0.0.1:5000/note/add', {'questionID': id, 'note': notes}, this.httpOptions);
+  }
+
   getQuestionById(id){
     return this.http.get('http://127.0.0.1:5000/one_question/' + id);
   }

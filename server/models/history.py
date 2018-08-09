@@ -8,7 +8,7 @@ class QuestionHistoryModel(db.Model):
     user_id = db.Column(db.String(20))
     question_id = db.Column(db.String(20))
     timestamp = db.Column(db.DateTime, server_default=db.text("sysdate"))
-
+    # timestamp = db.Column(db.DateTime)
     def __init__(self, user_id, question_id):
         self.user_id = user_id
         self.question_id = question_id

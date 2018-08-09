@@ -44,9 +44,9 @@ class MyNote(Resource):
             question_history = QuestionHistoryModel.find_by_username_question(current_user, note.question_id)
             ans_list = []
             if len(question_history) >0:
-                answer_list = AnswerHistoryModel.find_by_history(question_history.id)
+                answer_list = AnswerHistoryModel.find_by_history(str(question_history[0].id))
                 for answer in answer_list:
-                    ans_list.append(int(answer.answer_id))
+                    ans_list.append(answer.answer_id)
 
             map['user_answer'] = ans_list
             ret.append(map)
